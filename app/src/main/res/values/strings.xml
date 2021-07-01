@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">E-Study</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="abstract_circle">Abstract Circle</string>
+    <string name="lewati">Lewati</string>
+    <string name="lanjutkan"><![CDATA[Lanjutkan >]]></string>
+    <string name="welcome_image">Welcome Image</string>
+    <string name="welcome_title1">Selamat datang!</string>
+    <string name="welcome_title2">Sulit memahami materi?</string>
+    <string name="welcome_title3">Butuh teman belajar?</string>
+    <string name="welcome_desc1">Belajar lebih mudah dan \nmenyenangkan</string>
+    <string name="welcome_desc2">E-STUDY hadir dengan video pembelajaran \ninteraktif dan pengajar tersertifikasi</string>
+    <string name="welcome_desc3">Tetap terhubung bersama \nteman-temanmu melalui diskusi kelas</string>
+    <string name="mulai">Mulai</string>
+    <string name="arrow_back"><![CDATA[<]]></string>
+</resources>
