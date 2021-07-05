@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "999278831779",
+    "project_id": "e-study-2c48f",
+    "storage_bucket": "e-study-2c48f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999278831779:android:9636b0fc1e41750a4a3716",
+        "android_client_info": {
+          "package_name": "com.drunken.e_study"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "999278831779-h4gvt8depat8d1l2s3dsctt66dhgdk0r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYRUIaznxXJUbmNsEg6xJsGwybrdKiUDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "999278831779-h4gvt8depat8d1l2s3dsctt66dhgdk0r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
