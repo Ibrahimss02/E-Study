@@ -23,18 +23,19 @@
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/welcome_view_pager"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_start"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginBottom="30dp"/>
 
             <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
                 android:id="@+id/worm_indicator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/welcome_view_pager"
+                android:layout_marginBottom="35dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="35dp"
                 app:dotsSize="13dp"
                 app:dotsSpacing="8dp"
                 app:dotsColor="#FFFFFF"/>
@@ -45,10 +46,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:height="55dp"
-                app:layout_constraintTop_toBottomOf="@id/worm_indicator"
+                app:layout_constraintBottom_toTopOf="@id/worm_indicator"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:layout_marginStart="80dp"
                 android:layout_marginEnd="80dp"
                 android:text="@string/mulai"
@@ -59,7 +60,8 @@
                 android:textColor="?attr/colorOnSecondary"
                 android:backgroundTint="?attr/colorSecondary"
                 android:alpha="0.0"
-                android:clickable="false"/>
+                android:clickable="false"
+                tools:alpha="1.0"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

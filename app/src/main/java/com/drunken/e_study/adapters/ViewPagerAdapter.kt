@@ -13,7 +13,7 @@ import com.drunken.e_study.databinding.WelcomeImgItemBinding
 
 class ViewPagerAdapter(private val context : Context, private val images : ArrayList<Int>) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
-    inner class ViewPagerViewHolder(private val binding : WelcomeImgItemBinding, private val context: Context) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewPagerViewHolder(private val binding : WelcomeImgItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(index : Int, position: Int){
             binding.ivWelcome.setImageResource(index)
             when(position){
@@ -35,7 +35,7 @@ class ViewPagerAdapter(private val context : Context, private val images : Array
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
         return ViewPagerViewHolder(
-            WelcomeImgItemBinding.inflate(LayoutInflater.from(context), parent, false), context
+            WelcomeImgItemBinding.inflate(LayoutInflater.from(context), parent, false)
         )
     }
 

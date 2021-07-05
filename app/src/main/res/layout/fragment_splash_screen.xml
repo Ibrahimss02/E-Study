@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SplashScreenFragment">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary">
+
+        <ProgressBar
+            android:id="@+id/splash_screen_pb"
+            android:layout_width="450dp"
+            android:layout_height="450dp"
+            android:layout_marginStart="-145dp"
+            android:layout_marginTop="50dp"
+            android:theme="@style/ProgressBarTheme"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:fontFamily="@font/poppins_medium"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="70sp"
+            android:shadowDy="6.5"
+            android:shadowRadius="0.6"
+            android:shadowColor="#86454545"/>
+    </FrameLayout>
+</layout>

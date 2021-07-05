@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.drunken.e_study.adapters.ViewPagerAdapter
 import com.drunken.e_study.databinding.FragmentWelcomeScreenBinding
@@ -63,7 +64,7 @@ class WelcomeScreenFragment : Fragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_start -> {
-                Toast.makeText(context, "Button Clicked", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(WelcomeScreenFragmentDirections.actionWelcomeScreenToUserRegisterFragment())
             }
         }
     }

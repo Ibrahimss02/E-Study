@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/kursus_sd_bg">
+
+    <TextView
+        android:id="@+id/kursus_sd_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kursus_sd"
+        android:fontFamily="@font/poppins_medium"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSecondary"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/kursus_sd_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/kursus_sd_desc"
+        android:textSize="12sp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textColor="?attr/colorOnSecondary"
+        android:layout_below="@id/kursus_sd_title"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/ic_kursus_sd"
+        android:layout_below="@id/kursus_sd_desc"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
+
+
+
+</RelativeLayout>
