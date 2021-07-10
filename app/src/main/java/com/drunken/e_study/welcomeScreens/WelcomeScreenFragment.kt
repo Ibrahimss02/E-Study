@@ -1,22 +1,24 @@
-package com.drunken.e_study
+package com.drunken.e_study.welcomeScreens
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.drunken.e_study.R
 import com.drunken.e_study.adapters.ViewPagerAdapter
 import com.drunken.e_study.databinding.FragmentWelcomeScreenBinding
 
 class WelcomeScreenFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding : FragmentWelcomeScreenBinding
-    private val images = arrayListOf(R.drawable.ic_page_1, R.drawable.ic_page_2, R.drawable.ic_page_3)
+    private val images = arrayListOf(
+        R.drawable.ic_page_1,
+        R.drawable.ic_page_2,
+        R.drawable.ic_page_3
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

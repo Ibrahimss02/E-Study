@@ -2,7 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".HomeFragment">
+    tools:context=".mainScreens.home.HomeFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.mainScreens.home.HomeFragmentViewModel" />
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -57,7 +63,8 @@
                     style="@style/UserSignHeadline6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/user_greet_sample"
+                    tools:text="Hi Ibrahim,"
+                    android:text="@{`Hi ` + viewModel.user.component2() + `,`}"
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="@id/guideline_start"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -70,10 +77,11 @@
                     android:textStyle="normal"
                     app:layout_constraintStart_toStartOf="@id/guideline_start"
                     app:layout_constraintTop_toBottomOf="@id/user_name_greet_tv"
-                    android:text="Lorem ipsum dolor sit amet"
+                    android:text="Ayo mulai belajar!"
                     tools:ignore="HardcodedText" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_home_account"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     app:civ_border_color="?attr/colorOnSecondary"
@@ -97,6 +105,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:hint="@string/cari_kelasmu"
                         android:paddingTop="12dp" />
 
@@ -148,6 +158,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginBottom="10dp"
+                            android:onClick="@{() -> viewModel.navigateToBrowse(viewModel.SD_PATH)}"
                             android:layout_weight="0.45"
                             tools:ignore="NestedWeights" />
 
@@ -156,6 +167,7 @@
                             layout="@layout/kursus_sma_kategori"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:onClick="@{() -> viewModel.navigateToBrowse(viewModel.SMA_PATH)}"
                             android:layout_weight="0.5" />
 
                     </LinearLayout>
@@ -173,6 +185,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="0.5"
+                            android:onClick="@{() -> viewModel.navigateToBrowse(viewModel.SMP_PATH)}"
                             tools:ignore="NestedWeights" />
 
                         <include
@@ -181,12 +194,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="10dp"
+                            android:onClick="@{() -> viewModel.navigateToBrowse(viewModel.KULIAH_PATH)}"
                             android:layout_weight="0.45" />
 
                     </LinearLayout>
 
                 </LinearLayout>
-
 
             </LinearLayout>
 

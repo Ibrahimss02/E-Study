@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    tools:context=".mainScreens.account.AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.mainScreens.account.AccountViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="12dp"
+            android:onClick="@{() -> viewModel.signOut()}"
+            android:layout_marginEnd="12dp"
+            app:srcCompat="@drawable/ic_baseline_power_settings_new_24" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:contentDescription="@string/abstract_circle"
+            app:srcCompat="@drawable/ic_account_ellipse" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/img_profile_container"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3"
+                app:layout_constraintBottom_toBottomOf="@id/tv_account_fragment">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="113dp"
+                    android:layout_height="110dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/iu" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:contentDescription="@string/upload_image"
+                    android:translationZ="10dp"
+                    app:srcCompat="@drawable/ic_camera" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/account_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.user.component2()}"
+                tools:text="Ibrahim Sambata"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/img_profile_container"
+                android:layout_marginTop="8dp"/>
+
+
+            <include
+                android:id="@+id/class_info"
+                layout="@layout/class_account_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/likes_info"
+                app:layout_constraintEnd_toStartOf="@id/line_separator_1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/likes_info" />
+
+            <View
+                android:id="@+id/line_separator_1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#404040"
+                app:layout_constraintBottom_toBottomOf="@id/likes_info"
+                app:layout_constraintEnd_toEndOf="@id/line_separator_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/likes_info" />
+
+            <include
+                android:id="@+id/likes_info"
+                layout="@layout/likes_account_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_name"
+                app:layout_constraintBottom_toTopOf="@id/tv_account_fragment"/>
+
+            <View
+                android:id="@+id/line_separator_2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="#404040"
+                app:layout_constraintBottom_toBottomOf="@id/likes_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/line_separator_1"
+                app:layout_constraintTop_toTopOf="@id/likes_info" />
+
+            <include
+                android:id="@+id/certificate_info"
+                layout="@layout/certificate_account_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/likes_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/line_separator_2"
+                app:layout_constraintTop_toTopOf="@id/likes_info" />
+
+            <TextView
+                android:id="@+id/tv_account_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/rv_account"
+                app:layout_constraintVertical_bias="1"
+                android:text="@string/account_stim_tv"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                android:layout_marginStart="28dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:padding="6dp"
+                    app:listDataAccount="@{viewModel.courses}"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

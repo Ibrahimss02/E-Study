@@ -49,4 +49,8 @@
     <string name="cart">Cart</string>
     <string name="account">Account</string>
     <string name="transaction">Transaction</string>
+    <string name="kelas">Kelas</string>
+    <string name="suka">Suka</string>
+    <string name="sertifikat">Sertifikat</string>
+    <string name="account_stim_tv">Yuk lanjut belajar!</string>
 </resources>

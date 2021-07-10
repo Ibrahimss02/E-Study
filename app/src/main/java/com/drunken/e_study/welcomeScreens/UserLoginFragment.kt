@@ -1,4 +1,4 @@
-package com.drunken.e_study
+package com.drunken.e_study.welcomeScreens
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.drunken.e_study.mainScreens.MainActivity
+import com.drunken.e_study.R
 import com.drunken.e_study.databinding.FragmentUserLoginBinding
-import com.drunken.e_study.utils.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -28,6 +29,7 @@ class UserLoginFragment : Fragment(), View.OnClickListener {
 
         binding.loginBackBtn.setOnClickListener(this)
         binding.loginGoogleBtn.setOnClickListener(this)
+        binding.signInBtn.setOnClickListener(this)
 
 
 
@@ -55,6 +57,10 @@ class UserLoginFragment : Fragment(), View.OnClickListener {
                         (activity as WelcomeActivity).hideProgressDialog()
                     }
                 }
+            }
+            R.id.login_google_btn ->{
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
             }
         }
     }

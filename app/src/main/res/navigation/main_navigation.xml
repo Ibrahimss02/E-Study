@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.drunken.e_study.HomeFragment"
+        android:name="com.drunken.e_study.mainScreens.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_browseCourseSdFragment"
-            app:destination="@id/browseCourseSdFragment"
+            android:id="@+id/action_homeFragment_to_browseCourseFragment"
+            app:destination="@id/browseCourseFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -21,22 +21,31 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.drunken.e_study.AccountFragment"
+        android:name="com.drunken.e_study.mainScreens.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.drunken.e_study.CartFragment"
+        android:name="com.drunken.e_study.mainScreens.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/transactionFragment"
-        android:name="com.drunken.e_study.TransactionFragment"
+        android:name="com.drunken.e_study.mainScreens.newsFeed.NewsFeedFragment"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
     <fragment
-        android:id="@+id/browseCourseSdFragment"
-        android:name="com.drunken.e_study.BrowseCourseSdFragment"
-        android:label="fragment_browse_course_sd"
-        tools:layout="@layout/fragment_browse_course_sd" />
+        android:id="@+id/browseCourseFragment"
+        android:name="com.drunken.e_study.mainScreens.browseCourse.BrowseCourseFragment"
+        android:label="fragment_browse_course"
+        tools:layout="@layout/fragment_browse_course">
+
+        <argument
+            android:name="path"
+            app:argType="string"/>
+        <argument
+            android:name="tittle"
+            app:argType="string"
+            android:defaultValue="Cari Kursus" />
+    </fragment>
 </navigation>

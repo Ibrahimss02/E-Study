@@ -1,4 +1,4 @@
-package com.drunken.e_study
+package com.drunken.e_study.welcomeScreens
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.drunken.e_study.mainScreens.MainActivity
+import com.drunken.e_study.R
 import com.drunken.e_study.databinding.FragmentUserRegisterBinding
 import com.drunken.e_study.models.User
 import com.drunken.e_study.utils.FirestoreUtil
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.w3c.dom.Text
 
 class UserRegisterFragment : Fragment(), View.OnClickListener {
 

@@ -2,7 +2,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".SplashScreenFragment">
+    tools:context=".welcomeScreens.splash.SplashScreenFragment">
 
     <FrameLayout
         android:layout_width="match_parent"

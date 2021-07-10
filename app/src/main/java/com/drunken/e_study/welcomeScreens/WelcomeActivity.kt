@@ -1,10 +1,11 @@
-package com.drunken.e_study
+package com.drunken.e_study.welcomeScreens
 
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import com.drunken.e_study.R
 import com.google.android.material.snackbar.Snackbar
 
 class WelcomeActivity : AppCompatActivity() {

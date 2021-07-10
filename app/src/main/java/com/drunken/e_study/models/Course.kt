@@ -5,12 +5,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Course(
-    val id : String,
-    val tittle : String,
-    val desc : String,
-    val mentor : String,
-    val classCategory : String,
-    val price : Long,
-    val rating : Float,
-    val courseImg : Int
+    var id : String? = null,
+    var title : String? = null,
+    var desc : String? = null,
+    var mentor : String? = null,
+    var classCategory : String? = null,
+    var price : Long = 0,
+    var rating : Float = 0F,
+    var courseImg : Int = 0
 ) : Parcelable
