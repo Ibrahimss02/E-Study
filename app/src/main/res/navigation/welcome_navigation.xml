@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/userLoginFragment"
-        android:name="com.drunken.e_study.welcomeScreens.UserLoginFragment"
+        android:name="com.drunken.e_study.welcomeScreens.userLogin.UserLoginFragment"
         android:label="fragment_user_login"
         tools:layout="@layout/fragment_user_login" />
 </navigation>

@@ -3,15 +3,19 @@ package com.drunken.e_study.mainScreens.account
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
-import com.drunken.e_study.models.Course
-import com.drunken.e_study.models.User
+import com.drunken.e_study.database.Course
+import com.drunken.e_study.database.CourseDatabaseDao
+import com.drunken.e_study.database.User
+import com.drunken.e_study.database.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class AccountViewModel : ViewModel() {
+class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() {
 
     companion object {
         private const val SD_PATH = "SD_courses"
@@ -21,7 +25,7 @@ class AccountViewModel : ViewModel() {
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    private val _user = MutableLiveData<User>()
+    private val _user = MediatorLiveData<User>()
     val user : LiveData<User>
     get() = _user
 
@@ -31,24 +35,27 @@ class AccountViewModel : ViewModel() {
 
     private val idList = ArrayList<String>()
 
-    private val _signOut = MutableLiveData<Boolean>(false)
+    private val _signOut = MutableLiveData(false)
     val signOut : LiveData<Boolean>
     get() = _signOut
 
-    private val _notifyEmptyCourse = MutableLiveData<Boolean>(false)
+    private val _notifyEmptyCourse = MutableLiveData(false)
     val notifyEmptyCourse : LiveData<Boolean>
     get() = _notifyEmptyCourse
 
+    private val _showProgressDialog = MutableLiveData(false)
+    val showProgressDialog: LiveData<Boolean>
+        get() = _showProgressDialog
+
     init {
-        _notifyEmptyCourse.value = false
-        _signOut.value = false
+        _showProgressDialog.value = true
         viewModelScope.launch {
             getUser()
-            delay(5000)
             if (idList.isNotEmpty()) getCourses()
             else {
                 _notifyEmptyCourse.value = true
             }
+            _showProgressDialog.value = false
         }
     }
 
@@ -88,30 +95,31 @@ class AccountViewModel : ViewModel() {
         }
     }
 
-    private fun getUser() {
-        db.collection("users").document(auth.currentUser!!.uid).get().addOnSuccessListener {
-            val user = it.toObject(User::class.java)
+    private suspend fun getUser() {
+        withContext(Dispatchers.Main){
+            _user.value = userDatabase.getLastCurrentUser()
+            val user = _user.value
             if (user != null){
-                _user.value = user
-                user.coursesId?.let { list ->
-                    list.forEach { id ->
-                        idList.add(id)
-                    }
+                user.coursesId?.forEach {
+                    idList.add(it)
                 }
             }
         }
     }
 
     fun signOut(){
-        auth.signOut()
-        _signOut.value = true
+        viewModelScope.launch(Dispatchers.Main){
+            auth.signOut()
+            userDatabase.clearAllUser()
+            _signOut.value = true
+        }
     }
 
     fun doneSigningOut(){
-        _signOut.value = null
+        _signOut.value = false
     }
 
     fun doneNotifying(){
-        _notifyEmptyCourse.value = null
+        _notifyEmptyCourse.value = false
     }
 }

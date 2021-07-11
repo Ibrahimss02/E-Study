@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.drunken.e_study.R
+import com.drunken.e_study.database.Database
 import com.drunken.e_study.databinding.FragmentAccountBinding
 import com.drunken.e_study.mainScreens.MainActivity
 import com.drunken.e_study.welcomeScreens.WelcomeActivity
@@ -16,9 +17,6 @@ import com.drunken.e_study.welcomeScreens.WelcomeActivity
 class AccountFragment : Fragment() {
 
     private lateinit var binding : FragmentAccountBinding
-    private val viewModel : AccountViewModel by lazy {
-        ViewModelProvider(this).get(AccountViewModel::class.java)
-    }
 
 
     override fun onCreateView(
@@ -26,6 +24,11 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAccountBinding.inflate(inflater)
+
+        val application = requireActivity().application
+        val viewModelFactory = AccountViewModelFactory(Database.getInstance(application).userDatabaseDao)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(AccountViewModel::class.java)
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -40,6 +43,14 @@ class AccountFragment : Fragment() {
             } else {
                 tv.text = "0"
                 binding.tvAccountFragment.visibility = View.INVISIBLE
+            }
+        })
+
+        viewModel.showProgressDialog.observe(viewLifecycleOwner, {
+            if (it){
+                (activity as MainActivity).showProgressDialog("Fetching your data")
+            } else if (!it){
+                (activity as MainActivity).hideProgressDialog()
             }
         })
 

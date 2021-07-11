@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id){
                 R.id.browseCourseFragment -> {
-                    binding.mainBottomNav.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down))
                     binding.mainBottomNav.visibility = View.GONE
                 }
                 else -> {

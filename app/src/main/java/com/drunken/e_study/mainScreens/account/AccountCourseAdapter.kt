@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.databinding.AccountCourseItemBinding
-import com.drunken.e_study.models.Course
+import com.drunken.e_study.database.Course
 
 class AccountCourseAdapter : ListAdapter<Course, AccountCourseAdapter.AccountRVViewHolder>(
     ItemDiffUtilCallback()){

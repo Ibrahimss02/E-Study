@@ -15,6 +15,8 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+
+        progressDialog = Dialog(this)
     }
 
     fun showErrorSnackbar(message : String) {
@@ -24,7 +26,6 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     fun showProgressDialog(message: String){
-        progressDialog = Dialog(this)
         progressDialog.apply {
             setContentView(R.layout.progress_dialog)
             findViewById<TextView>(R.id.tv_progress_text).text = message

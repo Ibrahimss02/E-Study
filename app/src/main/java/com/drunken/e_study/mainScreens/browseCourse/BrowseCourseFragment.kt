@@ -32,8 +32,8 @@ class BrowseCourseFragment : Fragment(), androidx.appcompat.widget.SearchView.On
         })
 
         binding.browseCourseToolbar.apply {
-            setNavigationOnClickListener { findNavController().navigateUp() }
             title = arguments.tittle
+            setNavigationOnClickListener { findNavController().navigateUp() }
         }
 
 

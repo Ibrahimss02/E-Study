@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.drunken.e_study.R
-import com.drunken.e_study.adapters.ViewPagerAdapter
 import com.drunken.e_study.databinding.FragmentWelcomeScreenBinding
 
 class WelcomeScreenFragment : Fragment(), View.OnClickListener {

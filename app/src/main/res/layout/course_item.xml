@@ -7,7 +7,7 @@
     <data>
         <variable
             name="course"
-            type="com.drunken.e_study.models.Course" />
+            type="com.drunken.e_study.database.Course" />
     </data>
 
         <com.google.android.material.card.MaterialCardView

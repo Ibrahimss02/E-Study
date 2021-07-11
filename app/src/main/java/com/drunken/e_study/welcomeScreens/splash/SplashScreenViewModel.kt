@@ -1,29 +1,25 @@
 package com.drunken.e_study.welcomeScreens.splash
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import androidx.lifecycle.*
+import com.drunken.e_study.database.User
+import com.drunken.e_study.database.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashScreenViewModel : ViewModel() {
+class SplashScreenViewModel(private val database : UserDatabaseDao) : ViewModel() {
 
-    private val _navigateToHome = MutableLiveData<Boolean>()
-    val navigateToHome : LiveData<Boolean>
-    get() = _navigateToHome
-    private val auth = Firebase.auth
+    private val _user = MediatorLiveData<User>()
+    val user : LiveData<User>
+    get() = _user
 
     init {
-        viewModelScope.launch {
-            delay(2000)
-            _navigateToHome.value = auth.currentUser != null
+        viewModelScope.launch(Dispatchers.Main) {
+            _user.value = database.getLastCurrentUser()
+            Log.i("login awal", _user.value.toString())
         }
-    }
-
-    fun doneNavigating(){
-        _navigateToHome.value = null
     }
 }

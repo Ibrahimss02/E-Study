@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.drunken.e_study.models.Course
+import com.drunken.e_study.database.Course
 import com.drunken.e_study.databinding.CourseItemBinding
 
 class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList()): androidx.recyclerview.widget.ListAdapter<Course, BrowseCourseAdapter.RecyclerViewViewHolder>(

@@ -9,28 +9,27 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
+import com.drunken.e_study.database.Database
 import com.drunken.e_study.mainScreens.MainActivity
 
 class SplashScreenFragment : Fragment() {
-
-    private val viewModel : SplashScreenViewModel by lazy {
-        ViewModelProvider(this).get(SplashScreenViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel.navigateToHome.observe(viewLifecycleOwner, {
-            it?.let {
-                if (it){
-                    findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToWelcomeScreen())
-                    viewModel.doneNavigating()
-                } else if (!it) {
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
-                    requireActivity().finish()
-                    viewModel.doneNavigating()
-                }
+
+        val application = requireActivity().application
+        val dataSource = Database.getInstance(application).userDatabaseDao
+        val viewModelFactory = SplashScreenViewModelFactory(dataSource)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(SplashScreenViewModel::class.java)
+
+        viewModel.user.observe(viewLifecycleOwner, {
+            if (it != null){
+                startActivity(Intent(requireContext(), MainActivity::class.java))
+                requireActivity().finish()
+            } else {
+                findNavController().navigate(SplashScreenFragmentDirections.actionSplashScreenFragmentToWelcomeScreen())
             }
         })
 

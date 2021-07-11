@@ -6,9 +6,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.drunken.e_study.models.Course
+import com.drunken.e_study.database.Course
 import com.drunken.e_study.welcomeScreens.UserRegisterFragment
-import com.drunken.e_study.models.User
+import com.drunken.e_study.database.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore

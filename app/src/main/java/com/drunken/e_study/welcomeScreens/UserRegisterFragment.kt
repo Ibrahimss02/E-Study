@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.mainScreens.MainActivity
 import com.drunken.e_study.R
 import com.drunken.e_study.databinding.FragmentUserRegisterBinding
-import com.drunken.e_study.models.User
+import com.drunken.e_study.database.User
 import com.drunken.e_study.utils.FirestoreUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

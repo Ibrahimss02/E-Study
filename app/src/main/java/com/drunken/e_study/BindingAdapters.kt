@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.drunken.e_study.mainScreens.account.AccountCourseAdapter
 import com.drunken.e_study.mainScreens.browseCourse.BrowseCourseAdapter
-import com.drunken.e_study.models.Course
+import com.drunken.e_study.database.Course
 
 @BindingAdapter("listDataAccount")
 fun bindRecyclerView(recyclerView: RecyclerView, data: ArrayList<Course>?) {

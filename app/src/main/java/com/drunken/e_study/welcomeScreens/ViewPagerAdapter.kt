@@ -1,14 +1,10 @@
-package com.drunken.e_study.adapters
+package com.drunken.e_study.welcomeScreens
 
 import android.content.Context
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.R
-import com.drunken.e_study.databinding.FragmentWelcomeScreenBinding
 import com.drunken.e_study.databinding.WelcomeImgItemBinding
 
 class ViewPagerAdapter(private val context : Context, private val images : ArrayList<Int>) : RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {

@@ -1,21 +1,19 @@
 package com.drunken.e_study.mainScreens.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.drunken.e_study.models.User
+import androidx.lifecycle.*
+import com.drunken.e_study.database.User
+import com.drunken.e_study.database.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class HomeFragmentViewModel : ViewModel() {
+class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
 
-    private val _user = MutableLiveData<User>()
+    private val _user = MediatorLiveData<User>()
     val user : LiveData<User>
     get() = _user
-
-    private val db = Firebase.firestore
-    private val auth = Firebase.auth
 
     companion object {
         const val SD_PATH = "SD_courses"
@@ -29,11 +27,8 @@ class HomeFragmentViewModel : ViewModel() {
     }
 
     private fun getUser() {
-        db.collection("users").document(auth.currentUser!!.uid).get().addOnSuccessListener {
-            val user = it.toObject(User::class.java)
-            if (user != null){
-                _user.value = user
-            }
+        viewModelScope.launch(Dispatchers.Main) {
+            _user.value = database.getLastCurrentUser()
         }
     }
 

@@ -7,7 +7,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.drunken.e_study.mainScreens.home.HomeFragmentViewModel" />
+            type="com.drunken.e_study.mainScreens.home.HomeViewModel" />
     </data>
 
     <FrameLayout
