@@ -32,24 +32,28 @@ class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
         }
     }
 
-    private val _args = MutableLiveData<List<String>>()
-    val args : LiveData<List<String>>
+    private val _args = MutableLiveData<Pair<String, String>?>()
+    val args : LiveData<Pair<String, String>?>
     get() = _args
 
     fun navigateToBrowse(category : String){
         when(category){
             SD_PATH -> {
-                _args.value = listOf(SD_PATH, "Kursus SD")
+                _args.value = Pair(SD_PATH, "Kursus SD")
             }
             SMP_PATH -> {
-                _args.value = listOf(SMP_PATH, "Kursus SMP")
+                _args.value = Pair(SMP_PATH, "Kursus SMP")
             }
             SMA_PATH -> {
-                _args.value = listOf(SMA_PATH, "Kursus SMA")
+                _args.value = Pair(SMA_PATH, "Kursus SMA")
             }
             KULIAH_PATH -> {
-                _args.value = listOf(KULIAH_PATH, "Kursus Kuliah")
+                _args.value = Pair(KULIAH_PATH, "Kursus Kuliah")
             }
         }
+    }
+
+    fun doneNavigating(){
+        _args.value = null
     }
 }

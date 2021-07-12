@@ -26,9 +26,7 @@ fun bindBrowseRecyclerView(recyclerView: RecyclerView, data : ArrayList<Course>?
 
 @BindingAdapter("imgLoad")
 fun loadImgToView(imgView: ImageView, imgSrc: Int) {
-    Glide.with(imgView.context).load(imgSrc).apply(
-        RequestOptions().placeholder(R.drawable.loading_animation).error(R.drawable.ic_broken_image)
-    ).into(imgView)
+    Glide.with(imgView.context).load(imgSrc).into(imgView)
 }
 
 @BindingAdapter("loadPrice")

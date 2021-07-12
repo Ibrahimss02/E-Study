@@ -15,9 +15,11 @@
             app:destination="@id/browseCourseFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/homeFragment" />
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
@@ -39,7 +41,6 @@
         android:name="com.drunken.e_study.mainScreens.browseCourse.BrowseCourseFragment"
         android:label="fragment_browse_course"
         tools:layout="@layout/fragment_browse_course">
-
         <argument
             android:name="path"
             app:argType="string"/>

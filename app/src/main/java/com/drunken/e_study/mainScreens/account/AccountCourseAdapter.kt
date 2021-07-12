@@ -26,7 +26,6 @@ class AccountCourseAdapter : ListAdapter<Course, AccountCourseAdapter.AccountRVV
 
     override fun onBindViewHolder(holder: AccountRVViewHolder, position: Int) {
         val course = getItem(position)
-        Log.i("fetching", course.toString())
         holder.bind(course)
     }
 }

@@ -42,7 +42,7 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
             if (validateForm(password = password, email = email)) {
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        viewModelScope.launch(Dispatchers.Default) {
+                        viewModelScope.launch(Dispatchers.IO) {
                             insertNewUserToDb()
                         }
                         _loginSuccess.value = true

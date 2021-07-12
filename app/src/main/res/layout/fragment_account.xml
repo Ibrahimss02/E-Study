@@ -19,8 +19,8 @@
             android:layout_height="30dp"
             android:layout_gravity="end"
             android:layout_marginTop="12dp"
-            android:onClick="@{() -> viewModel.signOut()}"
             android:layout_marginEnd="12dp"
+            android:onClick="@{() -> viewModel.signOut()}"
             app:srcCompat="@drawable/ic_baseline_power_settings_new_24" />
 
         <ImageView
@@ -36,17 +36,17 @@
 
             <FrameLayout
                 android:id="@+id/img_profile_container"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_account_fragment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.3"
-                app:layout_constraintBottom_toBottomOf="@id/tv_account_fragment">
+                app:layout_constraintVertical_bias="0.2">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="113dp"
-                    android:layout_height="110dp"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:src="@drawable/iu" />
 
@@ -66,21 +66,21 @@
                 android:id="@+id/account_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.user.component2()}"
-                tools:text="Ibrahim Sambata"
-                android:textAlignment="center"
-                android:textSize="20sp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_medium"
+                android:text="@{viewModel.user.component2()}"
+                android:textAlignment="center"
                 android:textColor="@color/black"
+                android:textSize="18sp"
                 app:layout_constraintTop_toBottomOf="@id/img_profile_container"
-                android:layout_marginTop="8dp"/>
+                tools:text="Ibrahim Sambata" />
 
 
             <include
                 android:id="@+id/class_info"
                 layout="@layout/class_account_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="80dp"
                 app:layout_constraintBottom_toBottomOf="@id/likes_info"
                 app:layout_constraintEnd_toStartOf="@id/line_separator_1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,14 +99,13 @@
             <include
                 android:id="@+id/likes_info"
                 layout="@layout/likes_account_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:layout_constraintVertical_bias="0"
+                android:layout_width="40dp"
+                android:layout_height="80dp"
+                app:layout_constraintBottom_toTopOf="@id/tv_account_fragment"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/account_name"
-                app:layout_constraintBottom_toTopOf="@id/tv_account_fragment"/>
+                app:layout_constraintVertical_bias="0" />
 
             <View
                 android:id="@+id/line_separator_2"
@@ -121,8 +120,8 @@
             <include
                 android:id="@+id/certificate_info"
                 layout="@layout/certificate_account_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="71dp"
+                android:layout_height="80dp"
                 app:layout_constraintBottom_toBottomOf="@id/likes_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/line_separator_2"
@@ -132,26 +131,24 @@
                 android:id="@+id/tv_account_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/rv_account"
-                app:layout_constraintVertical_bias="1"
-                android:text="@string/account_stim_tv"
+                android:layout_marginStart="28dp"
                 android:fontFamily="@font/poppins_medium"
+                android:text="@string/account_stim_tv"
                 android:textColor="@color/black"
                 android:visibility="invisible"
-                android:layout_marginStart="28dp"/>
+                app:layout_constraintBottom_toTopOf="@id/rv_account"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:padding="6dp"
-                    app:listDataAccount="@{viewModel.courses}"
-                    android:layout_marginBottom="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:padding="6dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:listDataAccount="@{viewModel.courses}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

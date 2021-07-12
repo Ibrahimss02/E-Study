@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
         val navController = fragmentManager.navController
 
+        binding.mainBottomNav.setupWithNavController(navController)
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when(destination.id){
                 R.id.browseCourseFragment -> {
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.mainBottomNav.setupWithNavController(navController)
     }
 
     fun showErrorSnackbar(message : String) {

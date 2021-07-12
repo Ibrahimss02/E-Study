@@ -26,9 +26,13 @@ class HomeFragment : Fragment() {
         binding.viewModel = viewModel
 
         viewModel.args.observe(viewLifecycleOwner, {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBrowseCourseFragment(
-                it[0], it[1]
-            ))
+            if(it != null){
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBrowseCourseFragment(
+                    it.first, it.second
+                ))
+                viewModel.doneNavigating()
+            }
+
         })
 
         return binding.root

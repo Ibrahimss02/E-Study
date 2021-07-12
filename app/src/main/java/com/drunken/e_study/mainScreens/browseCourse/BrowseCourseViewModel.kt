@@ -36,7 +36,6 @@ class BrowseCourseViewModel(path : String) : ViewModel() {
                     }
                 }
                 _courses.value = allCourses
-                Log.i("fetching", _courses.value.toString())
             }
         }
     }
