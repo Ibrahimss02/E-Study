@@ -53,4 +53,13 @@
     <string name="suka">Suka</string>
     <string name="sertifikat">Sertifikat</string>
     <string name="account_stim_tv">Yuk lanjut belajar!</string>
+    <string name="course_image_desc">Course Image</string>
+    <string name="navigate_up_button">Navigate Up Button</string>
+    <string name="modul">Modul</string>
+    <string name="video">Video</string>
+    <string name="siswa">Siswa</string>
+    <string name="penilaian">Penilaian</string>
+    <string name="buy_now">Beli Sekarang</string>
+    <string name="add_to_cart_button">Add to cart button</string>
+    <string name="deskripsi_kelas">Deskripsi Kelas</string>
 </resources>

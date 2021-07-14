@@ -145,6 +145,7 @@
                 android:layout_marginBottom="10dp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:layoutAnimation="@anim/layout_animation"
                 android:padding="6dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"

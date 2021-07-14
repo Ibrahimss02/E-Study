@@ -5,7 +5,7 @@ import androidx.room.*
 import androidx.room.Database
 
 @Database(entities = [Course::class, User::class], version = 1, exportSchema = false)
-@TypeConverters(CourseIdTypeConverter::class)
+@TypeConverters(TypeConverter::class)
 abstract class Database : RoomDatabase(){
 
     abstract val courseDatabaseDAO : CourseDatabaseDao

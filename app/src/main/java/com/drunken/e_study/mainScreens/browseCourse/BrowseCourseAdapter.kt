@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.database.Course
 import com.drunken.e_study.databinding.CourseItemBinding
 
-class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList()): androidx.recyclerview.widget.ListAdapter<Course, BrowseCourseAdapter.RecyclerViewViewHolder>(
+class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList(),
+private val clickListener: CourseListener): androidx.recyclerview.widget.ListAdapter<Course, BrowseCourseAdapter.RecyclerViewViewHolder>(
     ItemDiffUtilCallback()
 ){
 
@@ -17,8 +18,9 @@ class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList
 
     class RecyclerViewViewHolder(private val binding: CourseItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(course: Course) {
+        fun bind(course: Course, clickListener: CourseListener) {
             binding.course = course
+            binding.clickListener = clickListener
         }
     }
 
@@ -30,7 +32,7 @@ class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList
 
     override fun onBindViewHolder(holder: RecyclerViewViewHolder, position: Int) {
         val course = getItem(position)
-        holder.bind(course)
+        holder.bind(course, clickListener)
     }
 
     // TODO Filter for search view *(not working yet)
@@ -62,4 +64,8 @@ class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList
 //
 //        }
 //    }
+}
+
+class CourseListener(val clickListener: (courseId: String) -> Unit) {
+    fun onClick(course: Course) = clickListener(course.id)
 }

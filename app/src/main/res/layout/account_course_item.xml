@@ -57,6 +57,8 @@
                 android:text="@{course.desc}"
                 tools:text="Penerapan Tematik pada Siswa Sekolah Dasar"
                 android:textColor="@color/white"
+                android:maxLines="3"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_light"/>
 
             <ImageView

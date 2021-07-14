@@ -16,6 +16,10 @@ class BrowseCourseViewModel(path : String) : ViewModel() {
     val courses : LiveData<ArrayList<Course>>
     get() = _courses
 
+    private val _navigateToCourseDetail = MutableLiveData<String?>()
+    val navigateToCourseDetail : LiveData<String?>
+    get() = _navigateToCourseDetail
+
     init {
         getCourse(path)
     }
@@ -38,6 +42,14 @@ class BrowseCourseViewModel(path : String) : ViewModel() {
                 _courses.value = allCourses
             }
         }
+    }
+
+    fun onCourseItemClicked(courseId : String){
+        _navigateToCourseDetail.value = courseId
+    }
+
+    fun onCourseNavigated(){
+        _navigateToCourseDetail.value = null
     }
 
 }

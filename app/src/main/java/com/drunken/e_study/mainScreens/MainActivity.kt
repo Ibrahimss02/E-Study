@@ -33,6 +33,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.browseCourseFragment -> {
                     binding.mainBottomNav.visibility = View.GONE
                 }
+                R.id.courseDetailFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
                 else -> {
                     binding.mainBottomNav.visibility = View.VISIBLE
                 }

@@ -30,5 +30,17 @@ data class Course(
     var rating : Float = 0F,
 
     @ColumnInfo(name = "course_image")
-    var courseImg : Int = 0
+    var courseImg : Int = 0,
+
+    @ColumnInfo(name = "course_videos")
+    var videos : List<String>? = null,
+
+    @ColumnInfo(name = "course_modules")
+    var modules : List<String>? = null,
+
+    @ColumnInfo(name = "course_quiz")
+    var listQuiz : List<String>? = null,
+
+    @ColumnInfo(name = "course_student")
+    var totalStudent : Int = 0
 )

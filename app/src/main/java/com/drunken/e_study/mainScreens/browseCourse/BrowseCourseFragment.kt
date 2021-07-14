@@ -2,6 +2,7 @@ package com.drunken.e_study.mainScreens.browseCourse
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -24,7 +25,17 @@ class BrowseCourseFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        adapter = BrowseCourseAdapter()
+        adapter = BrowseCourseAdapter(clickListener = CourseListener { courseId ->
+            viewModel.onCourseItemClicked(courseId)
+        })
+
+        viewModel.navigateToCourseDetail.observe(viewLifecycleOwner, { course ->
+            course?.let {
+                findNavController().navigate(BrowseCourseFragmentDirections.actionBrowseCourseFragmentToCourseDetailFragment(course))
+                viewModel.onCourseNavigated()
+            }
+        })
+
         binding.browseSdRv.adapter = adapter
 
         viewModel.courses.observe(viewLifecycleOwner, {
