@@ -35,7 +35,7 @@ class CourseDetailFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-
+        binding.rvDetailCourseVideo.adapter = CourseDetailVideosAdapter()
 
 
         return binding.root

@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/userRegisterFragment"
-        android:name="com.drunken.e_study.welcomeScreens.UserRegisterFragment"
+        android:name="com.drunken.e_study.welcomeScreens.userRegister.UserRegisterFragment"
         android:label="fragment_user_register"
         tools:layout="@layout/fragment_user_register" >
         <action

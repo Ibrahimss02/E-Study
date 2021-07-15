@@ -4,14 +4,12 @@ import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
 import com.drunken.e_study.database.Course
-import com.drunken.e_study.database.CourseDatabaseDao
 import com.drunken.e_study.database.User
 import com.drunken.e_study.database.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -96,8 +94,8 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
     }
 
     private suspend fun getUser() {
-        withContext(Dispatchers.Main){
-            _user.value = userDatabase.getLastCurrentUser()
+        withContext(Dispatchers.Default){
+            _user.value = userDatabase.lastCurrentUser()
             val user = _user.value
             if (user != null){
                 user.coursesId?.forEach {

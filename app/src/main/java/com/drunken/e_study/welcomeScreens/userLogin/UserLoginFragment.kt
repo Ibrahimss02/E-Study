@@ -52,7 +52,8 @@ class UserLoginFragment : Fragment(), View.OnClickListener {
         viewModel.showProgressDialog.observe(viewLifecycleOwner, {
             if (it){
                 (activity as WelcomeActivity).showProgressDialog("Signing you in")
-            } else if (!it){
+            }
+            if (!it){
                 (activity as WelcomeActivity).hideProgressDialog()
             }
         })

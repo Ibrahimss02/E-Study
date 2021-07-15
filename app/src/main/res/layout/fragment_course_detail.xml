@@ -307,7 +307,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_detail_course_video"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_height="wrap_content"
+                    app:listDataCourseDetailVideos="@{viewModel.course.videos}"
+                    android:layoutAnimation="@anim/layout_animation"/>
                 
             </LinearLayout>
 

@@ -37,10 +37,10 @@ class HomeFragment : Fragment() {
 
         })
 
-//        binding.ivHomeAccount.setOnClickListener {
-//            Toast.makeText(requireContext(), "Uploading", Toast.LENGTH_LONG).show()
-//            FirestoreUtil().setupCourses()
-//        }
+        binding.ivHomeAccount.setOnClickListener {
+            Toast.makeText(requireContext(), "Uploading", Toast.LENGTH_LONG).show()
+            FirestoreUtil().setupCourses()
+        }
 
         return binding.root
     }

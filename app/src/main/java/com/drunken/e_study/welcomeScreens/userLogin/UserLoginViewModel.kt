@@ -62,6 +62,7 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
             if (user != null) {
                 viewModelScope.launch(Dispatchers.IO) {
                     database.insert(user)
+                    Log.i("Login", "$user inserted")
                 }
             }
         }

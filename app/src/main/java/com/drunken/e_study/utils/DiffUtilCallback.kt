@@ -9,5 +9,15 @@ class ItemDiffUtilCallback : DiffUtil.ItemCallback<Course>(){
     override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
         return oldItem == newItem
     }
+}
+
+class StringDiffUtilCallback : DiffUtil.ItemCallback<String>(){
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+        return oldItem == newItem
+    }
 
 }

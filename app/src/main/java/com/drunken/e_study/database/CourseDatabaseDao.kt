@@ -16,7 +16,7 @@ interface CourseDatabaseDao {
     suspend fun updateCourse(course : Course)
 
     @Query("SELECT * from course_table WHERE id = :key")
-    fun getCourse(key : Long) : Course
+    fun getCourse(key : Long) : LiveData<Course>
 
     @Query("DELETE from course_table")
     suspend fun clearCourse()

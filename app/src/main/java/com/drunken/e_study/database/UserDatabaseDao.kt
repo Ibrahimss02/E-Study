@@ -16,10 +16,10 @@ interface UserDatabaseDao {
     suspend fun update(user: User)
 
     @Query("SELECT * from user_table WHERE id = :key")
-    suspend fun getUser(key: Long) : User
+    suspend fun getSpecificUser(key : Long) : User
 
     @Query("SELECT * from user_table LIMIT 1")
-    suspend fun getLastCurrentUser() : User
+    suspend fun lastCurrentUser() : User
 
     @Query("DELETE from user_table")
     suspend fun clearAllUser()

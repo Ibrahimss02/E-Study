@@ -3,10 +3,6 @@ package com.drunken.e_study.mainScreens.home
 import androidx.lifecycle.*
 import com.drunken.e_study.database.User
 import com.drunken.e_study.database.UserDatabaseDao
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
@@ -23,12 +19,8 @@ class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
     }
 
     init {
-        getUser()
-    }
-
-    private fun getUser() {
-        viewModelScope.launch(Dispatchers.Main) {
-            _user.value = database.getLastCurrentUser()
+        viewModelScope.launch {
+            _user.value = database.lastCurrentUser()
         }
     }
 

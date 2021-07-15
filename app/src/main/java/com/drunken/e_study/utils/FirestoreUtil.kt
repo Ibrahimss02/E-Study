@@ -1,7 +1,5 @@
 package com.drunken.e_study.utils
 
-import android.content.ContentValues.TAG
-import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -9,13 +7,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.drunken.e_study.R
 import com.drunken.e_study.database.Course
-import com.drunken.e_study.welcomeScreens.UserRegisterFragment
+import com.drunken.e_study.welcomeScreens.userRegister.UserRegisterFragment
 import com.drunken.e_study.database.User
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.*
 
 class FirestoreUtil {
 
@@ -26,14 +23,14 @@ class FirestoreUtil {
         get() = _courses
 
 
-    fun registerUser(userInfo: User, fragment: Fragment) {
-        db.collection("users").document(getCurrentUserId()).set(userInfo, SetOptions.merge())
-            .addOnSuccessListener {
-                (fragment as UserRegisterFragment).registerSuccess(userInfo)
-            }.addOnFailureListener {
-                Toast.makeText(fragment.requireActivity(), it.message, Toast.LENGTH_SHORT).show()
-            }
-    }
+//    fun registerUser(userInfo: User, fragment: Fragment) {
+//        db.collection("users").document(getCurrentUserId()).set(userInfo, SetOptions.merge())
+//            .addOnSuccessListener {
+//                (fragment as UserRegisterFragment).registerSuccess(userInfo)
+//            }.addOnFailureListener {
+//                Toast.makeText(fragment.requireActivity(), it.message, Toast.LENGTH_SHORT).show()
+//            }
+//    }
 
     fun getCurrentUserId(): String {
         val currentUser = auth.currentUser

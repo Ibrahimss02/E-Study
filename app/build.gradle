@@ -44,7 +44,6 @@ android {
 dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
     def lifecycle_version = "2.4.0-alpha02"
-    def room_version = "2.3.0"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.6.0'
@@ -63,8 +62,8 @@ dependencies {
     implementation 'com.tbuonomo:dotsindicator:4.2'
 
     // Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$room_version")
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation("androidx.room:room-ktx:2.3.0")
+    kapt "androidx.room:room-compiler:2.3.0"
 
     //ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

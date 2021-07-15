@@ -38,10 +38,6 @@ class BrowseCourseFragment : Fragment() {
 
         binding.browseSdRv.adapter = adapter
 
-        viewModel.courses.observe(viewLifecycleOwner, {
-            adapter.submitList(it)
-        })
-
         binding.browseCourseToolbar.apply {
             title = arguments.tittle
             setNavigationOnClickListener {
