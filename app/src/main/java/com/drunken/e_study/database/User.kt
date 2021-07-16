@@ -19,6 +19,9 @@ data class User(
     val imageProfile : Int? = null,
 
     @ColumnInfo(name = "user_courses_id")
-    val coursesId : ArrayList<String>? = null
+    val coursesId : ArrayList<String>? = null,
+
+    @ColumnInfo(name = "user_courses_cart")
+    val courseOnCart : ArrayList<String>? = null
 )
 

@@ -23,7 +23,7 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 
-    private val _user = MediatorLiveData<User>()
+    private val _user = MutableLiveData<User>()
     val user : LiveData<User>
     get() = _user
 
@@ -31,15 +31,13 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
     val courses : LiveData<ArrayList<Course>>
     get() = _courses
 
-    private val idList = ArrayList<String>()
+    private val _idList = MutableLiveData<ArrayList<String>>()
+    val idList : LiveData<ArrayList<String>>
+    get() = _idList
 
     private val _signOut = MutableLiveData(false)
     val signOut : LiveData<Boolean>
     get() = _signOut
-
-    private val _notifyEmptyCourse = MutableLiveData(false)
-    val notifyEmptyCourse : LiveData<Boolean>
-    get() = _notifyEmptyCourse
 
     private val _showProgressDialog = MutableLiveData(false)
     val showProgressDialog: LiveData<Boolean>
@@ -49,19 +47,15 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
         _showProgressDialog.value = true
         viewModelScope.launch {
             getUser()
-            if (idList.isNotEmpty()) getCourses()
-            else {
-                _notifyEmptyCourse.value = true
-            }
-            _showProgressDialog.value = false
+            Log.i("id list", _idList.value.toString())
         }
     }
 
     // TODO 1 (Sort all courses into 1 collection for 1 query place at a time)
 
-    private fun getCourses() {
+    fun setupCourses() {
         val courses = ArrayList<Course>()
-        db.collection(SD_PATH).whereIn("id", idList).addSnapshotListener { value, error ->
+        db.collection(SD_PATH).whereIn("id", _idList.value!!).addSnapshotListener { value, error ->
             if (error != null){
                 Log.w(ContentValues.TAG, "listen failed", error)
             }
@@ -76,7 +70,7 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
                 _courses.value = courses
             }
         }
-        db.collection(SMP_PATH).whereIn("id", idList).addSnapshotListener { value, error ->
+        db.collection(SMP_PATH).whereIn("id", _idList.value!!).addSnapshotListener { value, error ->
             if (error != null){
                 Log.w(ContentValues.TAG, "listen failed", error)
             }
@@ -91,17 +85,21 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
                 _courses.value = courses
             }
         }
+        Log.i("observe", _courses.value.toString())
     }
 
     private suspend fun getUser() {
-        withContext(Dispatchers.Default){
+        val idListTemp = arrayListOf<String>()
+        viewModelScope.launch{
             _user.value = userDatabase.lastCurrentUser()
-            val user = _user.value
-            if (user != null){
-                user.coursesId?.forEach {
-                    idList.add(it)
+            Log.i("observe", _user.value.toString())
+            if (_user.value != null){
+                user.value?.coursesId?.forEach {
+                    idListTemp.add(it)
                 }
             }
+            _idList.value = idListTemp
+            _showProgressDialog.value = false
         }
     }
 
@@ -115,9 +113,5 @@ class AccountViewModel(private val userDatabase: UserDatabaseDao) : ViewModel() 
 
     fun doneSigningOut(){
         _signOut.value = false
-    }
-
-    fun doneNotifying(){
-        _notifyEmptyCourse.value = false
     }
 }

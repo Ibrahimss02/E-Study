@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
 
-    private val _user = MediatorLiveData<User>()
+    private val _user = MutableLiveData<User>()
     val user : LiveData<User>
     get() = _user
 
@@ -20,7 +20,7 @@ class HomeViewModel(private val database : UserDatabaseDao) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _user.value = database.lastCurrentUser()
+            _user.postValue(database.lastCurrentUser())
         }
     }
 

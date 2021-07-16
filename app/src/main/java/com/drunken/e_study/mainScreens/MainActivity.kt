@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
         val navController = fragmentManager.navController
+        progressDialog = Dialog(this)
 
         binding.mainBottomNav.setupWithNavController(navController)
 
@@ -57,7 +58,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showProgressDialog(message: String){
-        progressDialog = Dialog(this)
         progressDialog.apply {
             setContentView(R.layout.progress_dialog)
             findViewById<TextView>(R.id.tv_progress_text).text = message

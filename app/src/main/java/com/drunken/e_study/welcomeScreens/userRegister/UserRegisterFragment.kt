@@ -52,6 +52,9 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
                     (activity as WelcomeActivity).showProgressDialog(it.second)
                     viewModel.dismissProgressDialog()
                 }
+                if(!it.first){
+                    (activity as WelcomeActivity).hideProgressDialog()
+                }
             }
         })
 
@@ -75,6 +78,7 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
     }
 
     private fun registerSuccess(){
+        (activity as WelcomeActivity).hideProgressDialog()
         startActivity(Intent(requireActivity(), MainActivity::class.java))
         requireActivity().finish()
     }

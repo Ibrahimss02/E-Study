@@ -69,6 +69,7 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
                 }.addOnFailureListener {
                     _showErrorSnackbar.value = Pair(true, it.message!!)
                 }
+                _showProgressDialog.value = null
             }
         }
     }
@@ -78,9 +79,9 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
             firestore.collection("users").document(userUid).set(userInfo, SetOptions.merge())
                 .addOnSuccessListener {
                     viewModelScope.launch(Dispatchers.IO) {
-                        _user.value = userInfo
                         userDatabase.insert(userInfo)
                     }
+                    _user.value = userInfo
                 }.addOnFailureListener {
                     _showErrorSnackbar.value = Pair(true, it.message!!)
                 }

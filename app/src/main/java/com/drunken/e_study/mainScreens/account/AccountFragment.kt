@@ -2,6 +2,7 @@ package com.drunken.e_study.mainScreens.account
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +19,6 @@ class AccountFragment : Fragment() {
 
     private lateinit var binding : FragmentAccountBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +34,15 @@ class AccountFragment : Fragment() {
 
         val adapter = AccountCourseAdapter()
         binding.rvAccount.adapter = adapter
+
+        viewModel.idList.observe(viewLifecycleOwner, {
+            Log.i("observer", it.toString())
+            if (it.isNullOrEmpty()){
+                (activity as MainActivity).showSnackbar("Kelas kamu masih kosong! Tambahkan yuk")
+            } else {
+                viewModel.setupCourses()
+            }
+        })
 
         viewModel.courses.observe(viewLifecycleOwner, {
             val tv = binding.classInfo.findViewById<TextView>(R.id.tv_class_counter)
@@ -61,14 +70,6 @@ class AccountFragment : Fragment() {
                 requireActivity().finish()
             }
         })
-
-        viewModel.notifyEmptyCourse.observe(viewLifecycleOwner, {
-            if (it){
-                (activity as MainActivity).showSnackbar("Kelas kamu masih kosong! Tambahkan yuk")
-                viewModel.doneNotifying()
-            }
-        })
-
 
         return binding.root
     }

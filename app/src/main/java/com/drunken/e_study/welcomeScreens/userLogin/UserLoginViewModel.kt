@@ -21,8 +21,8 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
 
     private val auth = Firebase.auth
     private val firestore = Firebase.firestore
-    private val _showProgressDialog = MutableLiveData(false)
-    val showProgressDialog: LiveData<Boolean>
+    private val _showProgressDialog = MutableLiveData<Boolean?>()
+    val showProgressDialog: LiveData<Boolean?>
         get() = _showProgressDialog
 
     private val _showErrorSnackbar = MutableLiveData<Pair<Boolean, String>>()
@@ -45,7 +45,6 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
                         viewModelScope.launch(Dispatchers.IO) {
                             insertNewUserToDb()
                         }
-                        _loginSuccess.value = true
                     } else {
                         _showErrorSnackbar.value = Pair(true, it.exception!!.message!!)
                     }
@@ -60,8 +59,9 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
         firestore.collection("users").document(auth.currentUser!!.uid).get().addOnSuccessListener {
             val user = it.toObject(User::class.java)
             if (user != null) {
-                viewModelScope.launch(Dispatchers.IO) {
+                viewModelScope.launch {
                     database.insert(user)
+                    _loginSuccess.value = true
                     Log.i("Login", "$user inserted")
                 }
             }
@@ -84,5 +84,6 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
 
     fun doneNavigating() {
         _loginSuccess.value = false
+        _showProgressDialog.value = null
     }
 }
