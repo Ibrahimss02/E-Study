@@ -1,14 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".mainScreens.cart.CartFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.mainScreens.cart.CartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.ui.mainScreens.cart.CartViewModel" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_home_ellipse_bottom"
+            android:layout_gravity="end|bottom"
+            android:contentDescription="@string/abstract_circle"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_ellipse_86"
+            android:contentDescription="@string/abstract_circle"/>
+
+        <RelativeLayout
+            android:id="@+id/empty_cart_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:visibility="gone">
+
+            <ImageView
+                android:id="@+id/ic_cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_cart_fill"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="@string/cart"/>
+
+            <TextView
+                android:id="@+id/empty_cart_string"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_cart_string"
+                android:layout_below="@id/ic_cart"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="14sp"/>
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/proceed_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_proceed"
+                android:layout_gravity="end"
+                android:layout_marginTop="16dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/proceed_cart_text_bg"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:onClick="@{() -> viewModel.onProceedClicked()}"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cart_rv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/proceed_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="16dp"
+                android:padding="20dp"
+                android:clipToPadding="false"
+                app:listDataCart="@{viewModel.course}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layoutAnimation="@anim/layout_animation"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

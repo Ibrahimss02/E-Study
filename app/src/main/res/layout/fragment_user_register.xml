@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".welcomeScreens.userRegister.UserRegisterFragment">
+    tools:context=".ui.welcomeScreens.userRegister.UserRegisterFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.drunken.e_study.welcomeScreens.userRegister.UserRegisterViewModel" />
+            type="com.drunken.e_study.ui.welcomeScreens.userRegister.UserRegisterViewModel" />
     </data>
 
     <FrameLayout

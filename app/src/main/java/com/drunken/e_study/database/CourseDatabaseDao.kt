@@ -1,26 +1,23 @@
 package com.drunken.e_study.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface CourseDatabaseDao {
 
-    @Insert
-    suspend fun insertCourse(course : Course)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(course : Course)
 
     @Update
-    suspend fun updateCourse(course : Course)
+    suspend fun update(course : Course)
 
     @Query("SELECT * from course_table WHERE id = :key")
-    fun getCourse(key : Long) : LiveData<Course>
+    suspend fun getCourse(key: String): Course
 
     @Query("DELETE from course_table")
     suspend fun clearCourse()
 
-    @Query("SELECT * FROM course_table")
-    fun getAllCourses() : LiveData<List<Course>>
+    @Query("SELECT * FROM course_table ORDER BY id DESC")
+    fun getAllCourses(): LiveData<List<Course>>
 }

@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".welcomeScreens.userLogin.UserLoginFragment">
+    tools:context=".ui.welcomeScreens.userLogin.UserLoginFragment">
     
     <data>
         <variable
             name="viewModel"
-            type="com.drunken.e_study.welcomeScreens.userLogin.UserLoginViewModel" />
+            type="com.drunken.e_study.ui.welcomeScreens.userLogin.UserLoginViewModel" />
     </data>
 
     <FrameLayout

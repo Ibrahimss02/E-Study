@@ -3,12 +3,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".mainScreens.browseCourse.BrowseCourseFragment">
+    tools:context=".ui.mainScreens.browseCourse.BrowseCourseFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.drunken.e_study.mainScreens.browseCourse.BrowseCourseViewModel" />
+            type="com.drunken.e_study.ui.mainScreens.browseCourse.BrowseCourseViewModel" />
     </data>
 
     <FrameLayout

@@ -13,7 +13,7 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/item_cardView"
         android:layout_width="225dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:backgroundTint="@color/secondaryColor"
         app:cardCornerRadius="16dp"
         app:cardElevation="4dp"

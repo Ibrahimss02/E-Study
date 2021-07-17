@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeScreen"
-        android:name="com.drunken.e_study.welcomeScreens.WelcomeScreenFragment"
+        android:name="com.drunken.e_study.ui.welcomeScreens.WelcomeScreenFragment"
         android:label="welcomeScreen"
         tools:layout="@layout/fragment_welcome_screen" >
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/userRegisterFragment"
-        android:name="com.drunken.e_study.welcomeScreens.userRegister.UserRegisterFragment"
+        android:name="com.drunken.e_study.ui.welcomeScreens.userRegister.UserRegisterFragment"
         android:label="fragment_user_register"
         tools:layout="@layout/fragment_user_register" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.drunken.e_study.welcomeScreens.splash.SplashScreenFragment"
+        android:name="com.drunken.e_study.ui.welcomeScreens.splash.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
         android:id="@+id/userLoginFragment"
-        android:name="com.drunken.e_study.welcomeScreens.userLogin.UserLoginFragment"
+        android:name="com.drunken.e_study.ui.welcomeScreens.userLogin.UserLoginFragment"
         android:label="fragment_user_login"
         tools:layout="@layout/fragment_user_login" />
 </navigation>

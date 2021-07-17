@@ -1,18 +1,20 @@
 package com.drunken.e_study.utils
 
+import android.app.Application
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.drunken.e_study.R
 import com.drunken.e_study.database.Course
-import com.drunken.e_study.welcomeScreens.userRegister.UserRegisterFragment
-import com.drunken.e_study.database.User
+import com.drunken.e_study.database.CourseDatabaseDao
+import com.drunken.e_study.database.Database
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class FirestoreUtil {
 
@@ -42,10 +44,10 @@ class FirestoreUtil {
         return currentUserID
     }
 
-    fun setupCourses() {
+    suspend fun setupCourses(dao: CourseDatabaseDao) {
         val courseSd = arrayListOf(
             Course(
-                "TMKV1",
+                "7eabac85-909f-47f0-9dad-72b4ec427fd3",
                 "Tematik Jilid I",
                 "Penerapan Tematik pada Siswa Sekolah Dasar",
                 "Budi, Ifadatul",
@@ -77,7 +79,7 @@ class FirestoreUtil {
                 56
             ),
             Course(
-                "TMKV2",
+                "795e0cde-fa11-4294-9ec6-f93e4aec2e62",
                 "Tematik Jilid II",
                 "Penerapan Tematik pada Siswa Sekolah Dasar",
                 "Budi, Ifadatul",
@@ -87,7 +89,7 @@ class FirestoreUtil {
                 R.drawable.sample_course_img_sd
             ),
             Course(
-                "TMKV3",
+                "56a2f4bd-d6c1-42c0-b774-1462ab79e03b",
                 "Tematik Jilid III",
                 "Penerapan Tematik pada Siswa Sekolah Dasar",
                 "Budi, Ifadatul",
@@ -97,7 +99,7 @@ class FirestoreUtil {
                 R.drawable.sample_course_img_sd
             ),
             Course(
-                "TMKV4",
+                "52ba7f4a-4057-4ac5-8d7e-9ad3a7e796f0",
                 "Tematik Jilid IV",
                 "Penerapan Tematik pada Siswa Sekolah Dasar",
                 "Budi, Ifadatul",
@@ -107,7 +109,7 @@ class FirestoreUtil {
                 R.drawable.sample_course_img_sd
             ),
             Course(
-                "TMKV5",
+                "ab553ef3-f6b1-4a3b-b522-c976c2cb853b",
                 "Tematik Jilid V",
                 "Penerapan Tematik pada Siswa Sekolah Dasar",
                 "Budi, Ifadatul",
@@ -117,7 +119,7 @@ class FirestoreUtil {
                 R.drawable.sample_course_img_sd
             ),
             Course(
-                "BID",
+                "ef5f2576-f8f5-4c4c-a9ad-b4990232edee",
                 "Bahasa Indonesia",
                 "Pengenalan Bahasa Indonesia yang Baik dan Benar",
                 "Glen, Diego",
@@ -127,7 +129,7 @@ class FirestoreUtil {
                 R.drawable.sample_bahasa_course
             ),
             Course(
-                "BIDV1",
+                "de3241cc-30f0-48fd-9305-000fd9660c53",
                 "Bahasa Indonesia Jilid I",
                 "Pengenalan Bahasa Indonesia yang Baik dan Benar",
                 "Budi, Ifadatul",
@@ -177,7 +179,7 @@ class FirestoreUtil {
                 desc =
                 "Intro ke aritmatika untuk siswa sekolah menengah pertama",
                 id =
-                "ATMKSMP1",
+                "92e575e5-19d2-461a-8a84-bc17a70be377",
                 mentor =
                 "Dimas, Glen",
                 price =
@@ -213,7 +215,7 @@ class FirestoreUtil {
                 desc =
                 "Intro ke geometri untuk siswa sekolah menengah pertama",
                 id =
-                "GMTSMP1",
+                "1f3d9dc8-f5fe-4f08-8217-2ef10b76dd83",
                 mentor =
                 "Billy, Gabriel",
                 price =
@@ -249,7 +251,7 @@ class FirestoreUtil {
                 desc =
                 "Pengenalan konsep-konsep dasar Matematika bagi siswa sekolah menengah pertama",
                 id =
-                "LGKDSR1",
+                "2e092f45-58e0-436d-95a8-ce47d9397b71",
                 mentor =
                 "Paul, Veronica",
                 price =
@@ -267,7 +269,7 @@ class FirestoreUtil {
                 desc =
                 "Pengenalan aljabar dan garis singgung kepada siswa sekolah menengah pertama",
                 id =
-                "MTKSMP1",
+                "3a51e7cc-f96e-4fb0-9679-2a9f40384654",
                 mentor =
                 "Budi, Ani Wahyuni",
                 price =
@@ -285,7 +287,7 @@ class FirestoreUtil {
                 desc =
                 "Kumpulan materi untuk menghadapi UNBK mata ujian Matematika",
                 id =
-                "MTKUNBK1",
+                "21acdb98-c5db-42f1-975a-201dd2c9d942",
                 mentor =
                 "Febry, John",
                 price =
@@ -303,7 +305,7 @@ class FirestoreUtil {
                 desc =
                 "Kumpulan materi untuk menghadapi UNBK mata ujian Matematik (II)",
                 id =
-                "MTKUNBK2",
+                "95b84d5f-8660-4f77-8809-9f34a1487973",
                 mentor =
                 "Febry, John",
                 price =
@@ -315,19 +317,23 @@ class FirestoreUtil {
             )
 
         )
-        courseSd.forEach { course ->
-            db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                Log.i("upload", "${course.title} uploaded")
+        withContext(Dispatchers.IO){
+            courseSd.forEach { course ->
+                dao.insert(course)
+                db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
+                    Log.i("upload", "${course.title} uploaded")
+                }
+                db.collection("SD_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
+                    Log.i("upload", "${course.title} uploaded to SD_courses") }
             }
-            db.collection("SD_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                Log.i("upload", "${course.title} uploaded to SD_courses") }
-        }
-        courseSmp.forEach { course ->
-            db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                Log.i("upload", "${course.title} uploaded")
-            }
-            db.collection("SMP_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                Log.i("upload", "${course.title} uploaded to SMP_courses")
+            courseSmp.forEach { course ->
+                dao.insert(course)
+                db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
+                    Log.i("upload", "${course.title} uploaded")
+                }
+                db.collection("SMP_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
+                    Log.i("upload", "${course.title} uploaded to SMP_courses")
+                }
             }
         }
     }

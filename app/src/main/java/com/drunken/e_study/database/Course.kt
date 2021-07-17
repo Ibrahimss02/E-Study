@@ -1,46 +1,44 @@
 package com.drunken.e_study.database
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
 
 @Entity(tableName = "course_table")
 data class Course(
     @PrimaryKey
-    var id : String = "",
+    val id : String = "",
 
     @ColumnInfo(name = "course_title")
-    var title : String? = null,
+    val title : String? = null,
 
     @ColumnInfo(name = "course_desc")
-    var desc : String? = null,
+    val desc : String? = null,
 
     @ColumnInfo(name = "course_mentor")
-    var mentor : String? = null,
+    val mentor : String? = null,
 
     @ColumnInfo(name = "course_class_category")
-    var classCategory : String? = null,
+    val classCategory : String? = null,
 
     @ColumnInfo(name = "course_price")
-    var price : Long = 0,
+    val price : Long? = 0,
 
     @ColumnInfo(name = "course_rating")
-    var rating : Float = 0F,
+    val rating : Float? = 0F,
 
     @ColumnInfo(name = "course_image")
-    var courseImg : Int = 0,
+    val courseImg : Int? = 0,
 
     @ColumnInfo(name = "course_videos")
-    var videos : List<String>? = null,
+    val videos : List<String>? = null,
 
     @ColumnInfo(name = "course_modules")
-    var modules : List<String>? = null,
+    val modules : List<String>? = null,
 
     @ColumnInfo(name = "course_quiz")
-    var listQuiz : List<String>? = null,
+    val listQuiz : List<String>? = null,
 
     @ColumnInfo(name = "course_student")
-    var totalStudent : Int = 0
+    val totalStudent : Int? = 0
 )

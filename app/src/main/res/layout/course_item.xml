@@ -10,7 +10,7 @@
             type="com.drunken.e_study.database.Course" />
         <variable
             name="clickListener"
-            type="com.drunken.e_study.mainScreens.browseCourse.CourseListener" />
+            type="com.drunken.e_study.ui.mainScreens.browseCourse.CourseListener" />
     </data>
 
         <com.google.android.material.card.MaterialCardView

@@ -16,7 +16,7 @@ interface UserDatabaseDao {
     suspend fun update(user: User)
 
     @Query("SELECT * from user_table WHERE id = :key")
-    fun getSpecificUser(key : Long) : LiveData<User>
+    fun getSpecificUser(key : String) : LiveData<User>
 
     @Query("SELECT * from user_table LIMIT 1")
     suspend fun lastCurrentUser() : User

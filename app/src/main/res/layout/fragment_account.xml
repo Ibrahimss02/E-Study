@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".mainScreens.account.AccountFragment">
+    tools:context=".ui.mainScreens.account.AccountFragment">
 
     <data>
         <variable
             name="viewModel"
-            type="com.drunken.e_study.mainScreens.account.AccountViewModel" />
+            type="com.drunken.e_study.ui.mainScreens.account.AccountViewModel" />
     </data>
 
     <FrameLayout
@@ -149,7 +149,7 @@
                 android:padding="6dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:listDataAccount="@{viewModel.courses}" />
+                app:listDataAccount="@{viewModel.course}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

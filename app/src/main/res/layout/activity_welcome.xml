@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".welcomeScreens.WelcomeActivity">
+    tools:context=".ui.welcomeScreens.WelcomeActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/welcome_fragment_container"

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.drunken.e_study.mainScreens.home.HomeFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -23,22 +23,31 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.drunken.e_study.mainScreens.account.AccountFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.drunken.e_study.mainScreens.cart.CartFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment"
+            app:enterAnim="@anim/slide_up" />
+        <action
+            android:id="@+id/action_cartFragment_to_confirmPaymentFragment"
+            app:destination="@id/confirmPaymentFragment"
+            app:enterAnim="@anim/slide_down" />
+    </fragment>
     <fragment
         android:id="@+id/transactionFragment"
-        android:name="com.drunken.e_study.mainScreens.newsFeed.NewsFeedFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.newsFeed.NewsFeedFragment"
         android:label="fragment_transaction"
         tools:layout="@layout/fragment_transaction" />
     <fragment
         android:id="@+id/browseCourseFragment"
-        android:name="com.drunken.e_study.mainScreens.browseCourse.BrowseCourseFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.browseCourse.BrowseCourseFragment"
         android:label="fragment_browse_course"
         tools:layout="@layout/fragment_browse_course">
         <argument
@@ -55,11 +64,20 @@
     </fragment>
     <fragment
         android:id="@+id/courseDetailFragment"
-        android:name="com.drunken.e_study.mainScreens.courseDetail.CourseDetailFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailFragment"
         android:label="fragment_course_detail"
         tools:layout="@layout/fragment_course_detail" >
         <argument
-            android:name="courseId"
+            android:name="id"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmPaymentFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.ConfirmPaymentFragment"
+        android:label="fragment_confirm_payment"
+        tools:layout="@layout/fragment_confirm_payment" >
+        <action
+            android:id="@+id/action_confirmPaymentFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
     </fragment>
 </navigation>

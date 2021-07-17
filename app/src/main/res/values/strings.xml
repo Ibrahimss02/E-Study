@@ -64,4 +64,16 @@
     <string name="deskripsi_kelas">Deskripsi Kelas</string>
     <string name="video_item_indicator_desc">Video Item Indicator</string>
     <string name="locked_item_indicator_desc">Locked Item Indicator</string>
+    <string name="empty_cart_string">Keranjangmu masih kosong, nih!</string>
+    <string name="cart_proceed">Lanjutkan Pembayaran</string>
+    <string name="course_image">Course Image</string>
+    <string name="trash_icon">Trash Icon</string>
+    <string name="back_btn">Back Button</string>
+    <string name="pembayaran">Pembayaran</string>
+    <string name="total_pembayaran">Total Pembayaran</string>
+    <string name="bayar">Bayar</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="voucher">Voucher</string>
+    <string name="pilih_voucher">Pilih Voucher</string>
+    <string name="pilih_metode">Pilih Metode</string>
 </resources>
