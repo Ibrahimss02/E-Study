@@ -3,10 +3,10 @@ package com.drunken.e_study.ui.mainScreens.home
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
-import com.drunken.e_study.database.Course
-import com.drunken.e_study.database.CourseDatabaseDao
-import com.drunken.e_study.database.User
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dao.CourseDatabaseDao
+import com.drunken.e_study.dto.User
+import com.drunken.e_study.dao.UserDatabaseDao
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -34,6 +34,10 @@ class HomeViewModel(private val database : UserDatabaseDao, private val courseDa
 
     }
 
+    /**
+     * This function is used to fetch all course from cloud to local Room database
+     * every time this fragment/ui gets initialized.
+     */
     private suspend fun fetchCourseToDb() {
         firestore.collection("courses").addSnapshotListener { value, error ->
             if (error != null){

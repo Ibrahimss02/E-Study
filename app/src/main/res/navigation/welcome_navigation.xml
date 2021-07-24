@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.drunken.e_study.ui.welcomeScreens.splash.SplashScreenFragment"
+        android:name="com.drunken.e_study.ui.welcomeScreens.splashScreen.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action

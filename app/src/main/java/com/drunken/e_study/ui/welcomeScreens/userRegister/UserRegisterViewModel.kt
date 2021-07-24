@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.drunken.e_study.database.User
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dto.User
+import com.drunken.e_study.dao.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
@@ -74,7 +74,7 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
         }
     }
 
-    suspend fun registerUserToFirestore(userInfo: User, userUid: String) {
+    private suspend fun registerUserToFirestore(userInfo: User, userUid: String) {
         withContext(Dispatchers.Default) {
             firestore.collection("users").document(userUid).set(userInfo, SetOptions.merge())
                 .addOnSuccessListener {
@@ -89,7 +89,7 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
         }
     }
 
-    fun validateForm(
+    private fun validateForm(
         email: String,
         password: String,
         confirmPassword: String,

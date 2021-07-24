@@ -3,6 +3,10 @@ package com.drunken.e_study.database
 import android.content.Context
 import androidx.room.*
 import androidx.room.Database
+import com.drunken.e_study.dao.CourseDatabaseDao
+import com.drunken.e_study.dao.UserDatabaseDao
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dto.User
 
 @Database(entities = [Course::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(TypeConverter::class)

@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.drunken.e_study.database.User
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dto.User
+import com.drunken.e_study.dao.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -71,7 +71,7 @@ class UserLoginViewModel(private val database: UserDatabaseDao) : ViewModel() {
         }
     }
 
-    fun validateForm(password: String, email: String): Boolean {
+    private fun validateForm(password: String, email: String): Boolean {
         return when {
             TextUtils.isEmpty(email) -> {
                 _showErrorSnackbar.value = Pair(true, "Please enter an email address")

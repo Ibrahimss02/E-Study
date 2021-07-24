@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.drunken.e_study.databinding.CourseDetailRvItemBinding
+import com.drunken.e_study.databinding.CourseDetailRvVideosItemBinding
 
 class CourseDetailVideosAdapter : ListAdapter<String, CourseDetailVideosAdapter.CourseDetailVideosViewHolder>(StringDiffUtilCallback()) {
 
-    class CourseDetailVideosViewHolder(private val binding : CourseDetailRvItemBinding) : RecyclerView.ViewHolder(binding.root){
+    class CourseDetailVideosViewHolder(private val binding : CourseDetailRvVideosItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(videosTitle : String) {
             binding.title = videosTitle
         }
-
     }
 
     override fun onCreateViewHolder(
@@ -21,14 +20,14 @@ class CourseDetailVideosAdapter : ListAdapter<String, CourseDetailVideosAdapter.
         viewType: Int
     ): CourseDetailVideosViewHolder {
         return CourseDetailVideosViewHolder(
-            CourseDetailRvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            CourseDetailRvVideosItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: CourseDetailVideosViewHolder, position: Int) {
         val videosTitle = getItem(position)
         videosTitle?.let {
-            holder.bind(videosTitle)
+            holder.bind(it)
         }
     }
 }

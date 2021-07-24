@@ -2,10 +2,10 @@ package com.drunken.e_study.ui.mainScreens.account
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.drunken.e_study.database.Course
-import com.drunken.e_study.database.CourseDatabaseDao
-import com.drunken.e_study.database.User
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dao.CourseDatabaseDao
+import com.drunken.e_study.dto.User
+import com.drunken.e_study.dao.UserDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -46,19 +46,23 @@ class AccountViewModel(
             _user.value = userDatabase.lastCurrentUser()
             val listTemp = _user.value!!.coursesId
             if (!(listTemp.isNullOrEmpty())) {
-                getUserCourse()
+                getUserData()
             } else {
                 _notifyEmptyList.value = true
             }
         }
     }
 
-    suspend fun getUserCourse() {
+    /**
+     * This function is used to fetch all course belong to user that is logged
+     * in at the time
+     */
+    private suspend fun getUserData() {
         Log.i("cart", "called user")
         val coursesIdList = arrayListOf<String>()
         val courses = arrayListOf<Course>()
-        Log.i("cart", "terpanggil dengan ${_user.value!!.courseOnCart.toString()}")
-        _user.value?.courseOnCart?.forEach {
+        Log.i("cart", "terpanggil dengan ${_user.value!!.coursesId.toString()}")
+        _user.value?.coursesId?.forEach {
             coursesIdList.add(it)
         }
         coursesIdList.forEach {
@@ -81,7 +85,7 @@ class AccountViewModel(
         _signOut.value = false
     }
 
-    fun refreshUser() {
+    fun refreshUserData() {
         viewModelScope.launch {
             userDatabase.update(_user.value!!)
         }

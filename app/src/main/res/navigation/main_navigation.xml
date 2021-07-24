@@ -25,7 +25,11 @@
         android:id="@+id/accountFragment"
         android:name="com.drunken.e_study.ui.mainScreens.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_courseDetailFragment2"
+            app:destination="@id/courseDetailFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.drunken.e_study.ui.mainScreens.cart.CartFragment"
@@ -33,7 +37,7 @@
         tools:layout="@layout/fragment_cart" >
         <action
             android:id="@+id/action_cartFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment"
+            app:destination="@id/courseDetailShopFragment"
             app:enterAnim="@anim/slide_up" />
         <action
             android:id="@+id/action_cartFragment_to_confirmPaymentFragment"
@@ -59,25 +63,129 @@
             android:defaultValue="Cari Kursus" />
         <action
             android:id="@+id/action_browseCourseFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment"
+            app:destination="@id/courseDetailShopFragment"
             app:enterAnim="@anim/slide_up" />
     </fragment>
     <fragment
-        android:id="@+id/courseDetailFragment"
-        android:name="com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailFragment"
+        android:id="@+id/courseDetailShopFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.courseDetailShop.CourseDetailShopFragment"
         android:label="fragment_course_detail"
-        tools:layout="@layout/fragment_course_detail" >
+        tools:layout="@layout/fragment_course_detail_shop" >
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_cartFragment"
+            app:destination="@id/cartFragment"
+            app:enterAnim="@anim/slide_down"
+            app:popUpTo="@id/browseCourseFragment" />
     </fragment>
     <fragment
         android:id="@+id/confirmPaymentFragment"
-        android:name="com.drunken.e_study.ui.mainScreens.payment.ConfirmPaymentFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.confirmPayment.ConfirmPaymentFragment"
         android:label="fragment_confirm_payment"
         tools:layout="@layout/fragment_confirm_payment" >
         <action
             android:id="@+id/action_confirmPaymentFragment_to_courseDetailFragment"
-            app:destination="@id/courseDetailFragment" />
+            app:destination="@id/courseDetailShopFragment" />
+        <action
+            android:id="@+id/action_confirmPaymentFragment_to_paymentMethodFragment"
+            app:destination="@id/paymentMethodFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="metode"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_confirmPaymentFragment_to_paymentInfoFragment"
+            app:destination="@id/paymentInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.paymentMethod.PaymentMethodFragment"
+        android:label="fragment_payment_method"
+        tools:layout="@layout/fragment_payment_method" >
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_confirmPaymentFragment"
+            app:destination="@id/confirmPaymentFragment"
+            app:popUpTo="@id/cartFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentInfoFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.paymentInfo.PaymentInfoFragment"
+        android:label="fragment_payment_info"
+        tools:layout="@layout/fragment_payment_info" >
+        <argument
+            android:name="method"
+            app:argType="string" />
+        <argument
+            android:name="totalPriceString"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_paymentInfoFragment_to_paymentInfo2ndFragment"
+            app:destination="@id/paymentInfo2ndFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentInfo2ndFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.paymentInfo.PaymentInfo2ndFragment"
+        android:label="fragment_payment_info2nd"
+        tools:layout="@layout/fragment_payment_info2nd" >
+        <argument
+            android:name="method"
+            app:argType="string" />
+        <argument
+            android:name="totalPriceString"
+            app:argType="string" />
+        <argument
+            android:name="accountNumString"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_paymentInfo2ndFragment_to_processPaymentFragment"
+            app:destination="@id/processPaymentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/processPaymentFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.payment.processPayment.ProcessPaymentFragment"
+        android:label="fragment_process_payment"
+        tools:layout="@layout/fragment_process_payment" >
+        <action
+            android:id="@+id/action_processPaymentFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseDetailFragment2"
+        android:name="com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailFragment"
+        android:label="CourseDetailFragment"
+        tools:layout="@layout/fragment_course_detail">
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_courseDetailFragment2_to_courseProgressFragment"
+            app:destination="@id/courseProgressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseProgressFragment"
+        android:name="com.drunken.e_study.ui.mainScreens.courseDetail.courseProgress.CourseProgressFragment"
+        android:label="fragment_course_progress"
+        tools:layout="@layout/fragment_course_progress" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            app:argType="integer" />
     </fragment>
 </navigation>

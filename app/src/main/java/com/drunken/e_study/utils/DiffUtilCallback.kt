@@ -1,5 +1,5 @@
 import androidx.recyclerview.widget.DiffUtil
-import com.drunken.e_study.database.Course
+import com.drunken.e_study.dto.Course
 
 class ItemDiffUtilCallback : DiffUtil.ItemCallback<Course>(){
     override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {

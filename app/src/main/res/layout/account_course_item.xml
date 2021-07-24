@@ -7,7 +7,10 @@
     <data>
         <variable
             name="course"
-            type="com.drunken.e_study.database.Course" />
+            type="com.drunken.e_study.dto.Course" />
+        <variable
+            name="clickListener"
+            type="com.drunken.e_study.ui.mainScreens.account.AccountCourseListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -20,7 +23,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp">
+        android:layout_marginTop="4dp"
+        android:onClick="@{() -> clickListener.onClick(course)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"

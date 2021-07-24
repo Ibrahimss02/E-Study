@@ -7,7 +7,7 @@
     <data>
         <variable
             name="course"
-            type="com.drunken.e_study.database.Course" />
+            type="com.drunken.e_study.dto.Course" />
         <variable
             name="clickListener"
             type="com.drunken.e_study.ui.mainScreens.cart.CourseListener" />
@@ -119,6 +119,7 @@
                 app:srcCompat="@drawable/ic_dashicons_trash"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> clickListener.onDelete(course)}"
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/trash_icon"/>
 

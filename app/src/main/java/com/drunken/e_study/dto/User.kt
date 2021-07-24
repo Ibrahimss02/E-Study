@@ -1,4 +1,4 @@
-package com.drunken.e_study.database
+package com.drunken.e_study.dto
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -16,12 +16,12 @@ data class User(
     val email : String? = null,
 
     @ColumnInfo(name = "user_profile_image")
-    val imageProfile : Int? = null,
+    var imageProfile : Int? = null,
 
     @ColumnInfo(name = "user_courses_id")
-    val coursesId : ArrayList<String>? = null,
+    var coursesId : ArrayList<String>? = null,
 
     @ColumnInfo(name = "user_courses_cart")
-    val courseOnCart : ArrayList<String>? = null
+    var courseOnCart : ArrayList<String>? = null
 )
 

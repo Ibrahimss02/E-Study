@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,12 +44,12 @@ class HomeFragment : Fragment() {
         /**
          * This function used to upload data(courses) from local to cloud as dummy
          */
-//        binding.ivHomeAccount.setOnClickListener {
-//            Toast.makeText(requireContext(), "Uploading", Toast.LENGTH_LONG).show()
-//            lifecycleScope.launch {
-//                FirestoreUtil().setupCourses(Database.getInstance(application).courseDatabaseDAO)
-//            }
-//        }
+        binding.ivHomeAccount.setOnClickListener {
+            Toast.makeText(requireContext(), "Uploading", Toast.LENGTH_LONG).show()
+            lifecycleScope.launch {
+                FirestoreUtil().setupCourses(Database.getInstance(application).courseDatabaseDAO)
+            }
+        }
 
         return binding.root
     }

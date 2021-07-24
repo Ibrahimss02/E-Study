@@ -20,6 +20,10 @@
         <item name="colorSecondary">#7AFFFFFF</item>
     </style>
 
+    <style name="ProgressBarThemePayment" parent="Widget.AppCompat.ProgressBar">
+        <item name="colorSecondary">@color/white</item>
+    </style>
+
     <style name="UserSignHeadline4" parent="TextAppearance.MaterialComponents.Headline4">
         <item name="fontFamily">@font/poppins_medium</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>

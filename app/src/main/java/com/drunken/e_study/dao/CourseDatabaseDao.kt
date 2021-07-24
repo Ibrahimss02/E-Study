@@ -1,7 +1,8 @@
-package com.drunken.e_study.database
+package com.drunken.e_study.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.drunken.e_study.dto.Course
 
 @Dao
 interface CourseDatabaseDao {

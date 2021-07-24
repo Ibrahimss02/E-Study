@@ -2,8 +2,8 @@ package com.drunken.e_study.ui.mainScreens.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.drunken.e_study.database.CourseDatabaseDao
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dao.CourseDatabaseDao
+import com.drunken.e_study.dao.UserDatabaseDao
 
 class HomeViewModelFactory(private val database : UserDatabaseDao, private val courseDatabase : CourseDatabaseDao) : ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

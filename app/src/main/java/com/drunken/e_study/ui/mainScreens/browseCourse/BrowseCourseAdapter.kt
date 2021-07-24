@@ -4,11 +4,11 @@ import ItemDiffUtilCallback
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.drunken.e_study.database.Course
+import com.drunken.e_study.dto.Course
 import com.drunken.e_study.databinding.CourseItemBinding
 
 class BrowseCourseAdapter(private val courseList : ArrayList<Course> = ArrayList(),
-private val clickListener: CourseListener
+                          private val clickListener: CourseListener
 ): androidx.recyclerview.widget.ListAdapter<Course, BrowseCourseAdapter.RecyclerViewViewHolder>(
     ItemDiffUtilCallback()
 ){

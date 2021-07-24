@@ -4,33 +4,27 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.drunken.e_study.database.Course
+import androidx.lifecycle.viewModelScope
+import com.drunken.e_study.dto.Course
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CourseDetailViewModel(
-    id : String = "",
-) : ViewModel(){
+class CourseDetailViewModel(private val id : String = "") : ViewModel(){
 
     private val _course = MutableLiveData<Course>()
     val course : LiveData<Course>
-    get() = _course
-
-    private val _onCourseFetchingError = MutableLiveData(false)
-    val onCourseFetchingError : LiveData<Boolean>
-    get() = _onCourseFetchingError
+        get() = _course
 
     private val db = Firebase.firestore
 
     init {
-        getCourseFromCloud(id)
+        fetchCourseFromCloud(id)
     }
 
-    private fun getCourseFromCloud(id: String) {
+    private fun fetchCourseFromCloud(id: String) {
         db.collection("courses").whereEqualTo("id", id).addSnapshotListener { value, error ->
             if (error != null){
                 Log.w("Course Detail", "error fetching course from cloud", error)
-                _onCourseFetchingError.value = true
                 return@addSnapshotListener
             }
             if (value != null){
@@ -46,15 +40,4 @@ class CourseDetailViewModel(
         }
     }
 
-    fun onCourseFetchingDone(){
-        _onCourseFetchingError.value = false
-    }
-
-    fun addToCart(){
-        // TODO (Implement add to cart feature)
-    }
-
-    fun buyNow(){
-        // TODO (Implement buy now feature)
-    }
 }

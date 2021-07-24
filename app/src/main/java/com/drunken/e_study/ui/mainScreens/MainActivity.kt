@@ -33,10 +33,28 @@ class MainActivity : AppCompatActivity() {
                 R.id.browseCourseFragment -> {
                     binding.mainBottomNav.visibility = View.GONE
                 }
-                R.id.courseDetailFragment -> {
+                R.id.courseDetailShopFragment -> {
                     binding.mainBottomNav.visibility = View.GONE
                 }
                 R.id.confirmPaymentFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.paymentMethodFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.paymentInfoFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.paymentInfo2ndFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.processPaymentFragment -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.courseDetailFragment2 -> {
+                    binding.mainBottomNav.visibility = View.GONE
+                }
+                R.id.courseProgressFragment -> {
                     binding.mainBottomNav.visibility = View.GONE
                 }
                 else -> {

@@ -1,13 +1,12 @@
-package com.drunken.e_study.ui.mainScreens.payment
+package com.drunken.e_study.ui.mainScreens.payment.confirmPayment
 
 import ItemDiffUtilCallback
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.drunken.e_study.database.Course
+import com.drunken.e_study.dto.Course
 import com.drunken.e_study.databinding.PaymentRvItemBinding
-import com.drunken.e_study.ui.mainScreens.cart.CourseListener
 
 class ConfirmPaymentAdapter(private val clickListener: CourseListener) : ListAdapter<Course, ConfirmPaymentAdapter.PaymentViewHolder>(ItemDiffUtilCallback()) {
 

@@ -1,20 +1,20 @@
 package com.drunken.e_study.ui.mainScreens.account
 
 import ItemDiffUtilCallback
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.databinding.AccountCourseItemBinding
-import com.drunken.e_study.database.Course
+import com.drunken.e_study.dto.Course
 
-class AccountCourseAdapter : ListAdapter<Course, AccountCourseAdapter.AccountRVViewHolder>(
+class AccountCourseAdapter(private val clickListener : AccountCourseListener) : ListAdapter<Course, AccountCourseAdapter.AccountRVViewHolder>(
     ItemDiffUtilCallback()){
 
     inner class AccountRVViewHolder(private val binding : AccountCourseItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(course: Course){
             binding.course = course
+            binding.clickListener = clickListener
         }
     }
 
@@ -29,6 +29,9 @@ class AccountCourseAdapter : ListAdapter<Course, AccountCourseAdapter.AccountRVV
         course?.let {
             holder.bind(course)
         }
-
     }
+}
+
+class AccountCourseListener(val clickListener: (courseId : String) -> Unit){
+    fun onClick(course : Course) = clickListener(course.id)
 }

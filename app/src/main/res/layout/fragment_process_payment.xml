@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.mainScreens.payment.processPayment.ProcessPaymentFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.ui.mainScreens.payment.processPayment.ProcessPaymentViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/loading_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:id="@+id/progress_bar_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:theme="@style/ProgressBarThemePayment" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/progress_bar_payment"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8dp"
+                android:text="@string/memproses_pembayaran"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/payment_success_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ic_checked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/payment_success_indicator_desc"
+                app:layout_constraintBottom_toTopOf="@id/tv_success"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:srcCompat="@drawable/ic_ant_design_check_circle_filled" />
+
+            <TextView
+                android:id="@+id/tv_success"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pembayaran_berhasil"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_thank_you"
+                app:layout_constraintTop_toBottomOf="@id/ic_checked" />
+
+            <TextView
+                android:id="@+id/tv_thank_you"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terima_kasih"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_success"
+                app:layout_constraintBottom_toTopOf="@id/payment_confirm_btn"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payment_confirm_btn"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="18dp"
+                android:backgroundTint="?colorSecondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_thank_you"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:onClick="@{() -> viewModel.onConfirmClicked()}"
+                android:text="@string/ok"
+                android:textStyle="bold"
+                app:cornerRadius="12dp"
+                app:elevation="10dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/payment_success_character_desc"
+                app:srcCompat="@drawable/ic_payment_character"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </LinearLayout>
+
+</layout>

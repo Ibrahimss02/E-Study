@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.mainScreens.courseDetailShop.CourseDetailShopFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.ui.mainScreens.courseDetailShop.CourseDetailShopViewModel" />
+    </data>
+    
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/course_header_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_detail_course"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                imgLoad="@{viewModel.course.courseImg}"
+                android:contentDescription="@string/course_image_desc"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/java_course_img" />
+
+            <ImageView
+                android:id="@+id/up_btn_datail_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/navigate_up_button"
+                app:srcCompat="@drawable/ic_back" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/course_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/guideline"
+            app:cardCornerRadius="8dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            app:cardElevation="14dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp">
+
+                <View
+                    android:id="@+id/line_separator_center"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:background="@color/secondaryDarkColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/jmlh_modul_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/line_separator_left"
+                    app:layout_constraintEnd_toStartOf="@id/line_separator_center"
+                    app:layout_constraintBottom_toTopOf="@id/tv_modul"
+                    tools:text="30"
+                    android:text="@{String.valueOf(viewModel.course.modules.size())}"
+                    android:textSize="29sp"
+                    android:textColor="@color/secondaryDarkColor"/>
+
+                <TextView
+                    android:id="@+id/tv_modul"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/modul"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toBottomOf="@id/jmlh_modul_tv"
+                    app:layout_constraintEnd_toEndOf="@id/jmlh_modul_tv"
+                    app:layout_constraintStart_toStartOf="@id/jmlh_modul_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="6dp"/>
+
+                <View
+                    android:id="@+id/line_separator_left"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:background="@color/secondaryDarkColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/line_separator_center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/jmlh_video_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/line_separator_left"
+                    app:layout_constraintBottom_toTopOf="@id/tv_video"
+                    tools:text="76"
+                    android:text="@{String.valueOf(viewModel.course.videos.size())}"
+                    android:textSize="29sp"
+                    android:textColor="@color/secondaryDarkColor"/>
+
+                <TextView
+                    android:id="@+id/tv_video"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/video"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="@id/jmlh_video_tv"
+                    app:layout_constraintStart_toStartOf="@id/jmlh_video_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/jmlh_video_tv"
+                    android:layout_marginBottom="6dp"/>
+
+                <View
+                    android:id="@+id/line_separator_right"
+                    android:layout_width="1dp"
+                    android:layout_height="50dp"
+                    android:background="@color/secondaryDarkColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/line_separator_center"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/jmlh_siswa_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/line_separator_center"
+                    app:layout_constraintEnd_toStartOf="@id/line_separator_right"
+                    app:layout_constraintBottom_toTopOf="@id/tv_siswa"
+                    tools:text="594"
+                    android:text="@{String.valueOf(viewModel.course.totalStudent)}"
+                    android:textSize="29sp"
+                    android:textColor="@color/secondaryDarkColor"/>
+
+                <TextView
+                    android:id="@+id/tv_siswa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/siswa"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toBottomOf="@id/jmlh_siswa_tv"
+                    app:layout_constraintEnd_toEndOf="@id/jmlh_siswa_tv"
+                    app:layout_constraintStart_toStartOf="@id/jmlh_siswa_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:id="@+id/jmlh_rating_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/line_separator_right"
+                    app:layout_constraintBottom_toTopOf="@id/tv_rating"
+                    tools:text="4.9"
+                    android:text="@{Float.toString(viewModel.course.rating)}"
+                    android:textSize="29sp"
+                    android:textColor="@color/secondaryDarkColor"/>
+
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/penilaian"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="13sp"
+                    app:layout_constraintTop_toBottomOf="@id/jmlh_rating_tv"
+                    app:layout_constraintEnd_toEndOf="@id/jmlh_rating_tv"
+                    app:layout_constraintStart_toStartOf="@id/jmlh_rating_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="6dp"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="287dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_action_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buy_now_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="32dp"
+                android:height="70dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/buy_now"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="18sp"
+                app:cornerRadius="8dp"
+                android:onClick="@{() -> viewModel.buyNow()}"
+                app:icon="@drawable/ic_baseline_arrow_back_ios_24"
+                app:iconGravity="end"
+                app:iconTint="?attr/colorOnSecondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/add_to_cart_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_to_cart_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:contentDescription="@string/add_to_cart_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:maxImageSize="35dp"
+                android:onClick="@{() -> viewModel.addToCart()}"
+                app:srcCompat="@drawable/ic_fontisto_shopping_basket_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/course_detail_sv_bg"
+            android:paddingStart="28dp"
+            android:paddingTop="60dp"
+            android:paddingEnd="28dp"
+            android:scrollIndicators="none"
+            app:layout_constraintBottom_toTopOf="@id/bottom_action_container"
+            app:layout_constraintTop_toTopOf="@id/course_info_container">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_detail_course_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:text="@{viewModel.course.title}"
+                    tools:text="Pemrograman Dasar Java" />
+
+                <TextView
+                    android:id="@+id/tv_detail_course_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    loadPrice="@{viewModel.course.price}"
+                    tools:text="Rp 75.000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/deskripsi_kelas"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/primaryColor"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_detail_course_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/black"
+                    android:text="@{viewModel.course.desc}"
+                    tools:text="Java merupakan salah satu bahasa pemrograman terpopuler di dunia. Oracle menyatakan 90% perusahaan terkemuka pada daftar Fortune 500 pernah menggunakan bahasa Java. Selain itu, Java juga dapat digunakan untuk mengembangkan aplikasi pada platform desktop, web, mobile, embedded, dan IoT. " />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail_course_video"
+                    android:layout_width="match_parent"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_height="wrap_content"
+                    app:listDataCourseDetailShopVideos="@{viewModel.course.videos}"
+                    android:layoutAnimation="@anim/layout_animation"/>
+                
+            </LinearLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

@@ -7,10 +7,10 @@
     <data>
         <variable
             name="course"
-            type="com.drunken.e_study.database.Course" />
+            type="com.drunken.e_study.dto.Course" />
         <variable
             name="clickListener"
-            type="com.drunken.e_study.ui.mainScreens.cart.CourseListener" />
+            type="com.drunken.e_study.ui.mainScreens.payment.confirmPayment.CourseListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

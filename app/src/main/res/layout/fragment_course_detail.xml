@@ -9,8 +9,7 @@
             name="viewModel"
             type="com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailViewModel" />
     </data>
-    
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,7 +24,7 @@
                 android:id="@+id/img_detail_course"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                imgLoad="@{viewModel.course.courseImg}"
+                app:imgLoad="@{viewModel.course.courseImg}"
                 android:contentDescription="@string/course_image_desc"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/java_course_img" />
@@ -72,8 +71,8 @@
                     app:layout_constraintStart_toEndOf="@id/line_separator_left"
                     app:layout_constraintEnd_toStartOf="@id/line_separator_center"
                     app:layout_constraintBottom_toTopOf="@id/tv_modul"
-                    tools:text="30"
                     android:text="@{String.valueOf(viewModel.course.modules.size())}"
+                    tools:text="30"
                     android:textSize="29sp"
                     android:textColor="@color/secondaryDarkColor"/>
 
@@ -108,8 +107,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/line_separator_left"
                     app:layout_constraintBottom_toTopOf="@id/tv_video"
-                    tools:text="76"
                     android:text="@{String.valueOf(viewModel.course.videos.size())}"
+                    tools:text="76"
                     android:textSize="29sp"
                     android:textColor="@color/secondaryDarkColor"/>
 
@@ -144,8 +143,8 @@
                     app:layout_constraintStart_toEndOf="@id/line_separator_center"
                     app:layout_constraintEnd_toStartOf="@id/line_separator_right"
                     app:layout_constraintBottom_toTopOf="@id/tv_siswa"
-                    tools:text="594"
                     android:text="@{String.valueOf(viewModel.course.totalStudent)}"
+                    tools:text="594"
                     android:textSize="29sp"
                     android:textColor="@color/secondaryDarkColor"/>
 
@@ -170,8 +169,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/line_separator_right"
                     app:layout_constraintBottom_toTopOf="@id/tv_rating"
-                    tools:text="4.9"
                     android:text="@{Float.toString(viewModel.course.rating)}"
+                    tools:text="4.9"
                     android:textSize="29sp"
                     android:textColor="@color/secondaryDarkColor"/>
 
@@ -201,50 +200,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="287dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottom_action_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/buy_now_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginEnd="32dp"
-                android:height="70dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="@string/buy_now"
-                android:textAlignment="viewStart"
-                android:textAllCaps="false"
-                android:textColor="?attr/colorOnSecondary"
-                android:textSize="18sp"
-                app:cornerRadius="8dp"
-                android:onClick="@{() -> viewModel.buyNow()}"
-                app:icon="@drawable/ic_baseline_arrow_back_ios_24"
-                app:iconGravity="end"
-                app:iconTint="?attr/colorOnSecondary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/add_to_cart_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/add_to_cart_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:contentDescription="@string/add_to_cart_button"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:maxImageSize="35dp"
-                android:onClick="@{() -> viewModel.addToCart()}"
-                app:srcCompat="@drawable/ic_fontisto_shopping_basket_add" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -254,7 +209,8 @@
             android:paddingStart="28dp"
             android:paddingTop="60dp"
             android:paddingEnd="28dp"
-            app:layout_constraintBottom_toTopOf="@id/bottom_action_container"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="@id/course_info_container">
 
             <LinearLayout
@@ -268,10 +224,10 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="viewStart"
+                    android:text="@{viewModel.course.title}"
                     android:textColor="@color/black"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:text="@{viewModel.course.title}"
                     tools:text="Pemrograman Dasar Java" />
 
                 <TextView
@@ -281,8 +237,8 @@
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/poppins_medium"
                     android:textAlignment="viewStart"
+                    app:loadPrice="@{viewModel.course.price}"
                     android:textColor="@color/black"
-                    loadPrice="@{viewModel.course.price}"
                     tools:text="Rp 75.000" />
 
                 <TextView
@@ -311,14 +267,21 @@
                     android:layout_height="wrap_content"
                     app:listDataCourseDetailVideos="@{viewModel.course.videos}"
                     android:layoutAnimation="@anim/layout_animation"/>
-                
-            </LinearLayout>
 
+            </LinearLayout>
         </ScrollView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="18dp"
+            app:srcCompat="@drawable/ic_checklist"
+            android:contentDescription="@string/dialog_fabutton_desc"
+            app:maxImageSize="28dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>
 

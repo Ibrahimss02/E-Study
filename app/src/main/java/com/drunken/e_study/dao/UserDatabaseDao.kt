@@ -1,10 +1,11 @@
-package com.drunken.e_study.database
+package com.drunken.e_study.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import com.drunken.e_study.dto.User
 
 @Dao
 interface UserDatabaseDao {

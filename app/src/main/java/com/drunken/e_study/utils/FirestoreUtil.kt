@@ -1,14 +1,11 @@
 package com.drunken.e_study.utils
 
-import android.app.Application
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.drunken.e_study.R
-import com.drunken.e_study.database.Course
-import com.drunken.e_study.database.CourseDatabaseDao
-import com.drunken.e_study.database.Database
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dao.CourseDatabaseDao
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore

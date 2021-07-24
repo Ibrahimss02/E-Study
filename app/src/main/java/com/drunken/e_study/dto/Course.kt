@@ -1,4 +1,4 @@
-package com.drunken.e_study.database
+package com.drunken.e_study.dto
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

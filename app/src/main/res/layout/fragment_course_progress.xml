@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.mainScreens.courseDetail.courseProgress.CourseProgressFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.drunken.e_study.ui.mainScreens.courseDetail.courseProgress.CourseProgressViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/course_header_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_detail_course"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:contentDescription="@string/course_image_desc"
+                android:scaleType="centerCrop"
+                app:imgLoad="@{viewModel.course.courseImg}"
+                tools:src="@drawable/java_course_img" />
+
+            <ImageView
+                android:id="@+id/up_btn_datail_course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/navigate_up_button"
+                app:srcCompat="@drawable/ic_back" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/course_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="14dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tv_progress_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/progress_belajar"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_progress_percentage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_progress_percentage" />
+
+                <TextView
+                    android:id="@+id/tv_progress_percentage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="0%" />
+
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:progress="19"
+                    android:progressTint="@color/secondaryDarkColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_progress_percentage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="287dp" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/course_detail_sv_bg"
+            android:paddingStart="28dp"
+            android:paddingTop="60dp"
+            android:paddingEnd="28dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/course_info_container">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_progress_course_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/layout_animation"
+                android:clipToPadding="false"
+                android:visibility="gone"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:data="@{viewModel.title}"
+                app:type="@{viewModel.type}"/>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

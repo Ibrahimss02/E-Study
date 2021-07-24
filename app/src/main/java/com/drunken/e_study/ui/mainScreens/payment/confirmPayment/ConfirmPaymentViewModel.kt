@@ -1,16 +1,20 @@
-package com.drunken.e_study.ui.mainScreens.payment
+package com.drunken.e_study.ui.mainScreens.payment.confirmPayment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.drunken.e_study.database.Course
-import com.drunken.e_study.database.CourseDatabaseDao
-import com.drunken.e_study.database.User
-import com.drunken.e_study.database.UserDatabaseDao
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dao.CourseDatabaseDao
+import com.drunken.e_study.dto.User
+import com.drunken.e_study.dao.UserDatabaseDao
 import kotlinx.coroutines.launch
 
-class ConfirmPaymentViewModel(private val userDatabase : UserDatabaseDao, private val courseDatabase : CourseDatabaseDao) : ViewModel() {
+class ConfirmPaymentViewModel(private val userDatabase : UserDatabaseDao, private val courseDatabase : CourseDatabaseDao, private val args: String?) : ViewModel() {
+
+    private val _arguments = MutableLiveData<String?>()
+    val arguments : LiveData<String?>
+    get() = _arguments
 
     private val _course = MutableLiveData<ArrayList<Course>>()
     val course: LiveData<ArrayList<Course>>
@@ -28,6 +32,14 @@ class ConfirmPaymentViewModel(private val userDatabase : UserDatabaseDao, privat
     val totalPriceString : LiveData<String>
     get() = _totalPriceString
 
+    private val _navigateToMethodChooser = MutableLiveData<Boolean?>()
+    val navigateToMethodChooser : LiveData<Boolean?>
+    get() = _navigateToMethodChooser
+
+    private val _navigateToPaymentInfo = MutableLiveData<Boolean?>()
+    val navigateToPaymentInfo : LiveData<Boolean?>
+    get() = _navigateToPaymentInfo
+
 
     init {
         viewModelScope.launch {
@@ -36,10 +48,11 @@ class ConfirmPaymentViewModel(private val userDatabase : UserDatabaseDao, privat
             if (!(listTemp.isNullOrEmpty())) {
                 getUserCourse()
             }
+            _arguments.value = args
         }
     }
 
-    suspend fun getUserCourse() {
+    private suspend fun getUserCourse() {
         val coursesIdList = arrayListOf<String>()
         val courses = arrayListOf<Course>()
         var totalPrice = 0L
@@ -61,6 +74,22 @@ class ConfirmPaymentViewModel(private val userDatabase : UserDatabaseDao, privat
 
     fun onCourseNavigated() {
         _navigateToCourseDetail.value = null
+    }
+
+    fun onMethodChooseClick(){
+        _navigateToMethodChooser.value = true
+    }
+
+    fun onMethodChooserNavigated() {
+        _navigateToMethodChooser.value = null
+    }
+
+    fun onPayActionClick(){
+        _navigateToPaymentInfo.value = true
+    }
+
+    fun onPaymentInfoNavigated(){
+        _navigateToPaymentInfo.value = null
     }
 
 }
