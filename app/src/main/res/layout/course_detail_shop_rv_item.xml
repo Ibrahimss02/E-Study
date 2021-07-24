@@ -7,6 +7,9 @@
         <variable
             name="title"
             type="String" />
+        <variable
+            name="url"
+            type="String" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

@@ -19,5 +19,22 @@ class StringDiffUtilCallback : DiffUtil.ItemCallback<String>(){
     override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
     }
+}
+
+class MapDiffUtilCallback : DiffUtil.ItemCallback<Map<String, String>?>(){
+    override fun areItemsTheSame(
+        oldItem: Map<String, String>,
+        newItem: Map<String, String>
+    ): Boolean {
+        return oldItem === newItem
+    }
+
+    override fun areContentsTheSame(
+        oldItem: Map<String, String>,
+        newItem: Map<String, String>
+    ): Boolean {
+        return oldItem == newItem
+    }
+
 
 }

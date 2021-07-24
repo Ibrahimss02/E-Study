@@ -53,12 +53,12 @@ class FirestoreUtil {
                 3.0F,
                 R.drawable.sample_course_img_sd,
                 listOf(
-                    "Pendahuluan",
-                    "Konsep Pembelajaran Tematik - Keg. 1",
-                    "Konsep Pembelajaran Tematik - Keg. 2",
-                    "Perangkat Pembelajaran Tematik - Keg. 1",
-                    "Perangkat Pembelajaran Tematik - Keg. 2",
-                    "Penutup"
+                    mapOf("Pendahuluan" to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Konsep Pembelajaran Tematik - Keg. 1"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Konsep Pembelajaran Tematik - Keg. 2"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Perangkat Pembelajaran Tematik - Keg. 1"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Perangkat Pembelajaran Tematik - Keg. 2"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Penutup"  to "https://www.youtube.com/watch?v=0dsBFFzPylE")
                 ),
                 listOf(
                     "Pendahuluan - Latar Belakang & Tujuan",
@@ -135,14 +135,14 @@ class FirestoreUtil {
                 3F,
                 R.drawable.sample_bahasa_course,
                 listOf(
-                    "Unit 1 - Tamasya",
-                    "Unit 2 - Kegemaran",
-                    "Unit 3 - Perpustakaan Sekolah",
-                    "Unit 4 - Peristiwa",
-                    "Unit 5 - Kehidupan",
-                    "Unit 6 - Lingkungan",
-                    "Unit 7 - Kenangan Masa Kecilku",
-                    "Unit 8 - Budaya"
+                    mapOf("Unit 1 - Tamasya"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 2 - Kegemaran"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 3 - Perpustakaan Sekolah"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 4 - Peristiwa"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 5 - Kehidupan"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 6 - Lingkungan"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 7 - Kenangan Masa Kecilku"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Unit 8 - Budaya"  to "https://www.youtube.com/watch?v=0dsBFFzPylE")
                 ),
                 listOf(
                     "Unit 1 - Menyebutkan kembali dengan kata",
@@ -186,10 +186,10 @@ class FirestoreUtil {
                 title =
                 "Aritmatika",
                 videos = listOf(
-                    "Pengertian Aritmatika",
-                    "Barisan Aritmatika",
-                    "Deret Aritmatika",
-                    "Pembahasan Soal"
+                    mapOf("Pengertian Aritmatika"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Barisan Aritmatika"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Deret Aritmatika"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Pembahasan Soal"  to "https://www.youtube.com/watch?v=0dsBFFzPylE")
                 ),
                 modules = listOf(
                     "Konsep Dasar Aritmatika",
@@ -222,11 +222,11 @@ class FirestoreUtil {
                 title =
                 "Geometri",
                 videos = listOf(
-                    "Konsep dasar Geometri",
-                    "Konsep baris & deret",
-                    "Barisan Geometri",
-                    "Deret Geometri",
-                    "Pembahasan soal"
+                    mapOf("Konsep dasar Geometri"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Konsep baris & deret"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Barisan Geometri"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Deret Geometri"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
+                    mapOf("Pembahasan soal"  to "https://www.youtube.com/watch?v=0dsBFFzPylE")
                 ),
                 modules = listOf(
                     "Konsep Geometri",

@@ -119,9 +119,9 @@
                 android:layout_height="wrap_content"
                 android:layoutAnimation="@anim/layout_animation"
                 android:clipToPadding="false"
-                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:data="@{viewModel.title}"
+                app:dataTitles="@{viewModel.title}"
+                app:dataVideos="@{viewModel.videosMap}"
                 app:type="@{viewModel.type}"/>
 
         </ScrollView>

@@ -15,9 +15,13 @@ class CourseProgressViewModel(private val id : String = "", val type : Int) : Vi
     val course : LiveData<Course>
     get() = _course
 
-    private val _title = MutableLiveData<List<String>>()
-    val title : LiveData<List<String>>
+    private val _title = MutableLiveData<List<String>?>()
+    val title : LiveData<List<String>?>
     get() = _title
+
+    private val _videosMap = MutableLiveData<List<Map<String, String>>?>()
+    val videosMap : LiveData<List<Map<String, String>>?>
+    get() = _videosMap
 
     private val db = Firebase.firestore
 
@@ -40,17 +44,16 @@ class CourseProgressViewModel(private val id : String = "", val type : Int) : Vi
                         _course.value = course!!
                     }
                 }
-                _title.value = when(type){
+                when(type){
                     CourseDetailFragment.VIDEOS_ITEM_TYPE -> {
-                        _course.value?.videos
+                        _videosMap.value = _course.value?.videos
                     }
                     CourseDetailFragment.MODULES_ITEM_TYPE -> {
-                        _course.value?.modules
+                        _title.value = _course.value?.modules
                     }
                     CourseDetailFragment.QUIZ_ITEM_TYPE -> {
-                        _course.value?.listQuiz
+                        _title.value = _course.value?.listQuiz
                     }
-                    else -> emptyList()
                 }
             }
         }

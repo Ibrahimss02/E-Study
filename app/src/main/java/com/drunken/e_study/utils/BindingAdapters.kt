@@ -18,54 +18,55 @@ import com.drunken.e_study.ui.mainScreens.courseDetailShop.CourseDetailShopVideo
 import com.drunken.e_study.ui.mainScreens.payment.confirmPayment.ConfirmPaymentAdapter
 
 @BindingAdapter("listDataAccount")
-fun bindAccountItems(recyclerView : RecyclerView, data : ArrayList<Course>?){
+fun bindAccountItems(recyclerView: RecyclerView, data: ArrayList<Course>?) {
     val adapter = recyclerView.adapter as AccountCourseAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listDataBrowse")
-fun bindBrowseRecyclerView(recyclerView: RecyclerView, data : ArrayList<Course>?){
+fun bindBrowseRecyclerView(recyclerView: RecyclerView, data: ArrayList<Course>?) {
     val adapter = recyclerView.adapter as BrowseCourseAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listDataCourseDetailShopVideos")
-fun bindCourseDetailShopVideos(recyclerView: RecyclerView, data : List<String>?){
+fun bindCourseDetailShopVideos(recyclerView: RecyclerView, data: List<Map<String, String>>?) {
     val adapter = recyclerView.adapter as CourseDetailShopVideosAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listDataCourseDetailVideos")
-fun bindCourseDetailVideos(recyclerView: RecyclerView, data : List<String>?){
+fun bindCourseDetailVideos(recyclerView: RecyclerView, data: List<Map<String, String>>?) {
     val adapter = recyclerView.adapter as CourseDetailVideosAdapter
     adapter.submitList(data)
 }
 
-@BindingAdapter(value = ["data", "type"], requireAll = true)
-fun bindCourseDetailProcessItems(recyclerView : RecyclerView, data: List<String>?, type : Int){
-    val adapter = when(type){
+@BindingAdapter(value = ["dataVideos", "dataTitles", "type"], requireAll = false)
+fun bindCourseDetailProcessItems(recyclerView: RecyclerView, dataVideos : List<Map<String, String>>?, dataTitles : List<String>?, type: Int) {
+    when (type) {
         CourseDetailFragment.VIDEOS_ITEM_TYPE -> {
-            recyclerView.adapter as CourseDetailVideosAdapter
+            val adapter = recyclerView.adapter as CourseDetailVideosAdapter
+            adapter.submitList(dataVideos)
         }
         CourseDetailFragment.MODULES_ITEM_TYPE -> {
-            recyclerView.adapter as CourseDetailModulesAdapter
+            val adapter = recyclerView.adapter as CourseDetailModulesAdapter
+            adapter.submitList(dataTitles)
         }
         CourseDetailFragment.QUIZ_ITEM_TYPE -> {
-            recyclerView.adapter as CourseDetailQuizAdapter
+            val adapter = recyclerView.adapter as CourseDetailQuizAdapter
+            adapter.submitList(dataTitles)
         }
-        else -> null
     }
-    adapter?.submitList(data)
 }
 
 @BindingAdapter("listDataCart")
-fun bindCartItems(recyclerView : RecyclerView, data : ArrayList<Course>?){
+fun bindCartItems(recyclerView: RecyclerView, data: ArrayList<Course>?) {
     val adapter = recyclerView.adapter as CartAdapter
     adapter.submitList(data)
 }
 
 @BindingAdapter("listDataPayment")
-fun bindPaymentItems(recyclerView: RecyclerView, data : ArrayList<Course>?){
+fun bindPaymentItems(recyclerView: RecyclerView, data: ArrayList<Course>?) {
     val adapter = recyclerView.adapter as ConfirmPaymentAdapter
     adapter.submitList(data)
 }
@@ -76,14 +77,14 @@ fun loadImgToView(imgView: ImageView, imgSrc: Int) {
 }
 
 @BindingAdapter("loadPrice")
-fun convertPrice(textView: TextView, price : Long) {
+fun convertPrice(textView: TextView, price: Long) {
     val price = "%,d".format(price)
     textView.text = "Rp " + price
 }
 
 @BindingAdapter("initMetodePembayaran")
-fun setMetodePembayaran(textView: TextView, metode : String?){
-    if (metode == null){
+fun setMetodePembayaran(textView: TextView, metode: String?) {
+    if (metode == null) {
         textView.text = textView.resources.getString(R.string.pilih_metode)
     } else {
         textView.text = metode

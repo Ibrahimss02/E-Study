@@ -1,17 +1,18 @@
 package com.drunken.e_study.ui.mainScreens.courseDetailShop
 
-import StringDiffUtilCallback
+import MapDiffUtilCallback
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.databinding.CourseDetailShopRvItemBinding
 
-class CourseDetailShopVideosAdapter : ListAdapter<String, CourseDetailShopVideosAdapter.CourseDetailVideosViewHolder>(StringDiffUtilCallback()) {
+class CourseDetailShopVideosAdapter : ListAdapter<Map<String, String>?, CourseDetailShopVideosAdapter.CourseDetailVideosViewHolder>(MapDiffUtilCallback()) {
 
     class CourseDetailVideosViewHolder(private val binding : CourseDetailShopRvItemBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(videosTitle : String) {
+        fun bind(videosTitle : String, url : String) {
             binding.title = videosTitle
+            binding.url = url
         }
 
     }
@@ -26,9 +27,10 @@ class CourseDetailShopVideosAdapter : ListAdapter<String, CourseDetailShopVideos
     }
 
     override fun onBindViewHolder(holder: CourseDetailVideosViewHolder, position: Int) {
-        val videosTitle = getItem(position)
+        val videos = getItem(position)
+        val videosTitle = videos?.keys?.toList()?.get(0)
         videosTitle?.let {
-            holder.bind(videosTitle)
+            holder.bind(it, videos[it]!!)
         }
     }
 }
