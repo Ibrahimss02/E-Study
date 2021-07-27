@@ -1,5 +1,6 @@
 package com.drunken.e_study.ui.mainScreens.account
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -64,6 +65,12 @@ class AccountFragment : Fragment() {
 
         viewModel.signOut.observe(viewLifecycleOwner, {
             if (it){
+                val firstRun = requireActivity().getSharedPreferences("PREFERENCE",
+                    Context.MODE_PRIVATE
+                ).getBoolean("firstrun", true)
+                if (!firstRun){
+                    requireActivity().getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit().putBoolean("firstrun", true).apply()
+                }
                 viewModel.doneSigningOut()
                 startActivity(Intent(requireContext(), WelcomeActivity::class.java))
                 requireActivity().finish()

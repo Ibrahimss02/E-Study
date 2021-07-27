@@ -4,21 +4,21 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_icons8_home"
-        android:title="@string/home" />
+        android:title="@string/beranda" />
 
     <item
         android:id="@+id/transactionFragment"
         android:icon="@drawable/ic_icon_checklist"
-        android:title="@string/transaction"/>
+        android:title="@string/feed"/>
 
     <item
         android:id="@+id/cartFragment"
         android:icon="@drawable/ic_icon_cart"
-        android:title="@string/cart"/>
+        android:title="@string/keranjang"/>
 
     <item
         android:id="@+id/accountFragment"
         android:icon="@drawable/ic_user_alt"
-        android:title="@string/account"/>
+        android:title="@string/akun"/>
 
 </menu>

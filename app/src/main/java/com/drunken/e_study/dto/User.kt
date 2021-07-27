@@ -16,7 +16,7 @@ data class User(
     val email : String? = null,
 
     @ColumnInfo(name = "user_profile_image")
-    var imageProfile : Int? = null,
+    var imageProfile : String? = null,
 
     @ColumnInfo(name = "user_courses_id")
     var coursesId : ArrayList<String>? = null,

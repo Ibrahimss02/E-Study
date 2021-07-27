@@ -1,11 +1,14 @@
 package com.drunken.e_study.ui.welcomeScreens.userRegister
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
@@ -17,6 +20,13 @@ import com.drunken.e_study.ui.welcomeScreens.WelcomeActivity
 class UserRegisterFragment : Fragment(), View.OnClickListener {
 
     private lateinit var binding : FragmentUserRegisterBinding
+    private lateinit var uri : Uri
+    private lateinit var viewModel : UserRegisterViewModel
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        this.uri = uri
+        binding.ivUserRegister.setImageURI(uri)
+        viewModel.imageUriString.value = uri.toString()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,7 +36,7 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
         val application = requireActivity().application
         val viewModelFactory = UserRegisterViewModelFactory(Database.getInstance(application).userDatabaseDao)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(UserRegisterViewModel::class.java)
-
+        this.viewModel = viewModel
         binding.viewModel = viewModel
         binding.punyaAkunTv.setOnClickListener(this)
 
@@ -59,7 +69,11 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
             }
         })
 
-
+        viewModel.pickImage.observe(viewLifecycleOwner, {
+            if (it == true){
+                getContent.launch("image/*")
+            }
+        })
 
         return binding.root
     }

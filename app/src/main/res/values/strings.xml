@@ -113,4 +113,11 @@
     <string name="module_item_indicator_desc">Module Item Indicator</string>
     <string name="quiz_item_indicator_desc">Quiz Item Indicator</string>
     <string name="oops_data_belum_ada">Oops! Data belum ada.</string>
+    <string name="perhatian">Perhatian</string>
+    <string name="prototype_dialog_paragraph">Aplikasi masih berupa prototype dan hanya bertujuan untuk memberikan gambar besar dari ide aplikasi. Sehingga beberapa data, fitur, dan view (mis. tombol) belum berfungsi seperti yang seharusnya.</string>
+    <string name="daftar_kelas">Daftar Kelas</string>
+    <string name="feed">Feed</string>
+    <string name="keranjang">Keranjang</string>
+    <string name="akun">Akun</string>
+    <string name="beranda">Beranda</string>
 </resources>

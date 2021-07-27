@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.drunken.e_study.databinding.CourseDetailRvVideosItemBinding
 
-class CourseDetailVideosAdapter :
-    ListAdapter<Map<String, String>?, CourseDetailVideosAdapter.CourseDetailVideosViewHolder>(
+class CourseDetailVideosAdapter(private val videoClickListener : VideoClickListener) : ListAdapter<Map<String, String>?, CourseDetailVideosAdapter.CourseDetailVideosViewHolder>(
         MapDiffUtilCallback()
     ) {
 
-    class CourseDetailVideosViewHolder(private val binding: CourseDetailRvVideosItemBinding) :
+    inner class CourseDetailVideosViewHolder(private val binding: CourseDetailRvVideosItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(videosTitle: String, url: String) {
             binding.title = videosTitle
             binding.url = url
+            binding.videoCallback = videoClickListener
         }
     }
 
@@ -41,4 +41,8 @@ class CourseDetailVideosAdapter :
             holder.bind(it, videos[it]!!)
         }
     }
+}
+
+class VideoClickListener(val url : (String) -> Unit){
+    fun onClick(url : String) = url(url)
 }

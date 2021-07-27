@@ -1,6 +1,8 @@
 package com.drunken.e_study.ui.welcomeScreens.userRegister
 
+import android.net.Uri
 import android.text.TextUtils
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,13 +13,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewModel() {
 
     private val firestore = Firebase.firestore
+    private val cloudStorageRef = Firebase.storage.reference
 
     private val _showErrorSnackbar = MutableLiveData<Pair<Boolean, String>?>()
     val showErrorSnackbar: MutableLiveData<Pair<Boolean, String>?>
@@ -27,10 +32,15 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
     val showProgressDialog: LiveData<Pair<Boolean, String>?>
         get() = _showProgressDialog
 
+    private val _pickImage = MutableLiveData<Boolean?>()
+    val pickImage : LiveData<Boolean?>
+    get() = _pickImage
+
     val email = MutableLiveData<String>()
     val username = MutableLiveData<String>()
     val password = MutableLiveData<String>()
     val confirmPassword = MutableLiveData<String>()
+    val imageUriString = MutableLiveData<String>()
 
     private val _registerSuccess = MutableLiveData(false)
     val registerSuccess: LiveData<Boolean>
@@ -52,16 +62,34 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
             val password = password.value!!
             val confirmPassword = confirmPassword.value!!
 
+
             if (validateForm(email, password, confirmPassword, username)) {
                 _showProgressDialog.value = Pair(true, "Validating your data")
                 auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        viewModelScope.launch(Dispatchers.IO) {
                             val firebaseUser = it.result!!.user!!
                             val user =
                                 User(firebaseUser.uid, username, email)
-                            registerUserToFirestore(user, firebaseUser.uid)
-                        }
+
+                            if (!TextUtils.isEmpty(imageUriString.value)){
+                                val imgUri = Uri.parse(imageUriString.value)
+                                val imageRef = cloudStorageRef.child("images/" + firebaseUser.uid + "/" + imgUri.lastPathSegment)
+                                val uploadTask = imageRef.putFile(imgUri)
+
+                                uploadTask.addOnSuccessListener {
+                                    imageRef.downloadUrl.addOnSuccessListener { url ->
+                                        user.imageProfile = url.toString()
+                                            registerUserToFirestore(user)
+                                    }
+                                }
+
+                                uploadTask.addOnFailureListener { error ->
+                                    Log.e("Register", error.message.toString())
+                                }
+                            } else {
+                                registerUserToFirestore(user)
+                            }
+
                     } else {
                         _showErrorSnackbar.value = Pair(true, it.exception!!.message!!)
                         _showProgressDialog.value = null
@@ -74,9 +102,9 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
         }
     }
 
-    private suspend fun registerUserToFirestore(userInfo: User, userUid: String) {
-        withContext(Dispatchers.Default) {
-            firestore.collection("users").document(userUid).set(userInfo, SetOptions.merge())
+    private fun registerUserToFirestore(userInfo: User) {
+        viewModelScope.launch {
+            firestore.collection("users").document(userInfo.id).set(userInfo, SetOptions.merge())
                 .addOnSuccessListener {
                     viewModelScope.launch {
                         userDatabase.insert(userInfo)
@@ -87,6 +115,10 @@ class UserRegisterViewModel(private val userDatabase : UserDatabaseDao) : ViewMo
                     _showProgressDialog.value = null
                 }
         }
+    }
+
+    fun pickImage(){
+        _pickImage.value = true
     }
 
     private fun validateForm(

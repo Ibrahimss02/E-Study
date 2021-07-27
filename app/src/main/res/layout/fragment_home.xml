@@ -89,7 +89,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/desc_home"
                     app:layout_constraintEnd_toEndOf="@id/guideline_end"
                     app:layout_constraintTop_toTopOf="@id/user_name_greet_tv"
-                    android:src="@drawable/iu" />
+                    app:loadImgProfile="@{viewModel.user}" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/MaterialEditText"

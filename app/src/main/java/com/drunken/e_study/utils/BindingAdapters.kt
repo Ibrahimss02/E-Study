@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.drunken.e_study.ui.mainScreens.account.AccountCourseAdapter
 import com.drunken.e_study.ui.mainScreens.browseCourse.BrowseCourseAdapter
 import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dto.User
 import com.drunken.e_study.ui.mainScreens.cart.CartAdapter
 import com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailFragment
 import com.drunken.e_study.ui.mainScreens.courseDetail.CourseDetailVideosAdapter
@@ -74,6 +75,13 @@ fun bindPaymentItems(recyclerView: RecyclerView, data: ArrayList<Course>?) {
 @BindingAdapter("imgLoad")
 fun loadImgToView(imgView: ImageView, imgSrc: Int) {
     Glide.with(imgView.context).load(imgSrc).into(imgView)
+}
+
+@BindingAdapter("loadImgProfile")
+fun loadImgWithGlide(imgView: ImageView, imgSrc: User?){
+    if (imgSrc != null){
+        Glide.with(imgView.context).load(imgSrc.imageProfile).centerCrop().placeholder(R.drawable.avatar_place_holder).error(R.drawable.avatar_place_holder).into(imgView)
+    }
 }
 
 @BindingAdapter("loadPrice")

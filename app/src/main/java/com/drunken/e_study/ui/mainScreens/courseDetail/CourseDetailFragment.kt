@@ -1,8 +1,10 @@
 package com.drunken.e_study.ui.mainScreens.courseDetail
 
 import android.app.Dialog
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.LinearLayout
@@ -11,12 +13,12 @@ import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
 import com.drunken.e_study.databinding.FragmentCourseDetailBinding
-import kotlin.math.roundToInt
 
 
 class CourseDetailFragment : Fragment() {
 
     private lateinit var binding : FragmentCourseDetailBinding
+    private lateinit var dialog : Dialog
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,15 +35,36 @@ class CourseDetailFragment : Fragment() {
             showDialog(requireActivity(), args.id)
         }
 
-        val adapter = CourseDetailVideosAdapter()
+        val adapter = CourseDetailVideosAdapter(VideoClickListener { url ->
+            val packageManager = context?.packageManager ?: return@VideoClickListener
+            val httpUri = Uri.parse(url)
+            var intent = Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + httpUri.getQueryParameter("v")))
+            if(intent.resolveActivity(packageManager) == null) {
+                // YouTube app isn't found, use the web url
+                intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            }
+
+            startActivity(intent)
+        })
+
         binding.rvDetailCourseVideo.adapter = adapter
 
+        binding.upBtnDatailCourse.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         return binding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (this::dialog.isInitialized){
+            dialog.dismiss()
+        }
+    }
+
     private fun showDialog(activity: FragmentActivity, id : String) {
-        val dialog = Dialog(activity)
+        dialog = Dialog(activity)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(true)
         dialog.setContentView(R.layout.course_detail_dialog)

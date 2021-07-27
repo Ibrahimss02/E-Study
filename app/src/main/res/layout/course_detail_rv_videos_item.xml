@@ -8,6 +8,9 @@
             name="title"
             type="String" />
         <variable
+            name="videoCallback"
+            type="com.drunken.e_study.ui.mainScreens.courseDetail.VideoClickListener" />
+        <variable
             name="url"
             type="String" />
     </data>
@@ -17,6 +20,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
+        android:onClick="@{() -> videoCallback.onClick(url)}"
         android:layout_margin="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout

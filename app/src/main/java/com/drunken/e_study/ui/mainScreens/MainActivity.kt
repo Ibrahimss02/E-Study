@@ -65,6 +65,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        val firstRun = this.getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("firstrun", true)
+        if (!firstRun){
+            this.getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("firstrun", true).apply()
+        }
+    }
+
     fun showErrorSnackbar(message : String) {
         val snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
         snackbar.view.setBackgroundColor(ContextCompat.getColor(this, R.color.snackbar_error_color))

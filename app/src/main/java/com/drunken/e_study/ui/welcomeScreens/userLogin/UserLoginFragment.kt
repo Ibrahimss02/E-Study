@@ -58,6 +58,11 @@ class UserLoginFragment : Fragment(), View.OnClickListener {
         return binding.root
     }
 
+    override fun onPause() {
+        super.onPause()
+        (activity as WelcomeActivity).hideProgressDialog()
+    }
+
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.login_back_btn -> {

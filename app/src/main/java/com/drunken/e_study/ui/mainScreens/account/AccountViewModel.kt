@@ -17,11 +17,6 @@ class AccountViewModel(
     private val courseDatabase: CourseDatabaseDao
 ) : ViewModel() {
 
-    companion object {
-        private const val SD_PATH = "SD_courses"
-        private const val SMP_PATH = "SMP_courses"
-    }
-
     private val db = Firebase.firestore
     private val auth = Firebase.auth
 

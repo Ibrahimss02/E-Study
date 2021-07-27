@@ -52,29 +52,19 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <!--            TODO :: Horizontal Scroll Preset Search Button-->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <ToggleButton
-                    style="?materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </HorizontalScrollView>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+                android:paddingEnd="20dp"
+                android:layout_marginTop="18dp">
 
                 <TextView
                     android:id="@+id/browse_course_toolbar_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Daftar Kelas"
+                    android:text="@string/daftar_kelas"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -102,9 +92,6 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </LinearLayout>
-
     </FrameLayout>
-
 </layout>

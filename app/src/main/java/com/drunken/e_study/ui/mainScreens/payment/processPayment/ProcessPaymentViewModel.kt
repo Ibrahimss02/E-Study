@@ -32,9 +32,20 @@ class ProcessPaymentViewModel(private val userDatabaseDao: UserDatabaseDao) : Vi
     private fun updateUserCourse() {
         viewModelScope.launch(Dispatchers.Default) {
             val user = userDatabaseDao.lastCurrentUser()
+            val courses = arrayListOf<String>()
 
-            user.courseOnCart!!.forEach {
-                user.coursesId!!.add(it)
+            /**
+             * Check if user course is empty to prevent null pointer exception
+             */
+            if (user.coursesId.isNullOrEmpty()){
+                user.courseOnCart!!.forEach {
+                    courses.add(it)
+                }
+                user.coursesId = courses
+            } else {
+                user.courseOnCart!!.forEach {
+                    user.coursesId!!.add(it)
+                }
             }
 
             user.courseOnCart!!.clear()
