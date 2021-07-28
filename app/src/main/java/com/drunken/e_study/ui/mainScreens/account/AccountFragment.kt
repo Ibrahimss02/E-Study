@@ -2,12 +2,16 @@ package com.drunken.e_study.ui.mainScreens.account
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
@@ -19,6 +23,17 @@ import com.drunken.e_study.ui.welcomeScreens.WelcomeActivity
 class AccountFragment : Fragment() {
 
     private lateinit var binding : FragmentAccountBinding
+    private lateinit var uri : Uri
+    private lateinit var viewModel : AccountViewModel
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        this.uri = uri
+        binding.ivProfile.setImageURI(uri)
+        Log.i("test", uri.toString())
+        if (this::viewModel.isInitialized){
+            Log.i("test", "manggil")
+            viewModel.updateUserData(uri)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +44,7 @@ class AccountFragment : Fragment() {
 
         val application = requireActivity().application
         val viewModelFactory = AccountViewModelFactory(Database.getInstance(application).userDatabaseDao, Database.getInstance(application).courseDatabaseDAO)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(AccountViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AccountViewModel::class.java)
 
         binding.viewModel = viewModel
 
@@ -76,6 +91,17 @@ class AccountFragment : Fragment() {
                 requireActivity().finish()
             }
         })
+
+        viewModel.notifyUserUpdated.observe(viewLifecycleOwner, {
+            if (it){
+                Toast.makeText(context, "User Data Updated", Toast.LENGTH_SHORT).show()
+                viewModel.refreshUserData()
+            }
+        })
+
+        binding.imgProfileContainer.setOnClickListener {
+            getContent.launch("image/*")
+        }
 
         return binding.root
     }

@@ -48,7 +48,7 @@
         android:id="@+id/transactionFragment"
         android:name="com.drunken.e_study.ui.mainScreens.newsFeed.NewsFeedFragment"
         android:label="fragment_transaction"
-        tools:layout="@layout/fragment_transaction" />
+        tools:layout="@layout/fragment_news_feed" />
     <fragment
         android:id="@+id/browseCourseFragment"
         android:name="com.drunken.e_study.ui.mainScreens.browseCourse.BrowseCourseFragment"

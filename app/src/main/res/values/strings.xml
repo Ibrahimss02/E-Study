@@ -120,4 +120,6 @@
     <string name="keranjang">Keranjang</string>
     <string name="akun">Akun</string>
     <string name="beranda">Beranda</string>
+    <string name="trending_minggu">Trending Minggu Ini</string>
+    <string name="news_image_desc">News Image</string>
 </resources>

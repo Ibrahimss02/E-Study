@@ -3,10 +3,10 @@ package com.drunken.e_study.ui.mainScreens.home
 import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.*
-import com.drunken.e_study.dto.Course
 import com.drunken.e_study.dao.CourseDatabaseDao
-import com.drunken.e_study.dto.User
 import com.drunken.e_study.dao.UserDatabaseDao
+import com.drunken.e_study.dto.Course
+import com.drunken.e_study.dto.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch

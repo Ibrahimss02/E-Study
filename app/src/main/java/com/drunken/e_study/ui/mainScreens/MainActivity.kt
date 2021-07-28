@@ -1,6 +1,8 @@
 package com.drunken.e_study.ui.mainScreens
 
 import android.app.Dialog
+import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,11 +18,16 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
     private lateinit var progressDialog : Dialog
+    lateinit var apiKey : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val ai: ApplicationInfo = applicationContext.packageManager
+            .getApplicationInfo(applicationContext.packageName, PackageManager.GET_META_DATA)
+        apiKey = ai.metaData["newsApiKey"] as String
 
         val fragmentManager = supportFragmentManager.findFragmentById(R.id.fragment_container_main) as NavHostFragment
         val navController = fragmentManager.navController
