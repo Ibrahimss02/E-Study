@@ -24,7 +24,7 @@
                 android:id="@+id/img_detail_course"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
-                app:imgLoad="@{viewModel.course.courseImg}"
+                app:loadImg="@{viewModel.course.courseImg}"
                 android:contentDescription="@string/course_image_desc"
                 android:scaleType="centerCrop"
                 tools:src="@drawable/java_course_img" />

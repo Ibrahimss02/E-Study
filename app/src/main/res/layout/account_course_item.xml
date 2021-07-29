@@ -35,10 +35,9 @@
                 android:id="@+id/iv_account_course"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:imgLoad="@{course.courseImg}"
+                app:loadImg="@{course.courseImg}"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/iu"/>
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_account_course_title"

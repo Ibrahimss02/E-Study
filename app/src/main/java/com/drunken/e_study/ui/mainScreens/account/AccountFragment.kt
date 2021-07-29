@@ -1,7 +1,9 @@
 package com.drunken.e_study.ui.mainScreens.account
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
@@ -19,21 +22,33 @@ import com.drunken.e_study.database.Database
 import com.drunken.e_study.databinding.FragmentAccountBinding
 import com.drunken.e_study.ui.mainScreens.MainActivity
 import com.drunken.e_study.ui.welcomeScreens.WelcomeActivity
+import com.google.android.material.snackbar.Snackbar
 
 class AccountFragment : Fragment() {
 
     private lateinit var binding : FragmentAccountBinding
     private lateinit var uri : Uri
     private lateinit var viewModel : AccountViewModel
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        this.uri = uri
-        binding.ivProfile.setImageURI(uri)
-        Log.i("test", uri.toString())
-        if (this::viewModel.isInitialized){
-            Log.i("test", "manggil")
-            viewModel.updateUserData(uri)
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        it?.let{ uri ->
+            this.uri = uri
+            binding.ivProfile.setImageURI(uri)
+            if (this::viewModel.isInitialized){
+                viewModel.updateUserData(uri)
+            }
         }
     }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getContent.launch("image/*")
+            } else {
+                Toast.makeText(context, "Permission to access storage denied", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,7 +115,23 @@ class AccountFragment : Fragment() {
         })
 
         binding.imgProfileContainer.setOnClickListener {
-            getContent.launch("image/*")
+            when {
+                ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED -> {
+                    getContent.launch("image/*")
+                }
+                shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) -> {
+                    Snackbar.make(requireActivity().findViewById(android.R.id.content), "Permission needed to read storage", Snackbar.LENGTH_SHORT).show()
+                }
+                else -> {
+                    // You can directly ask for the permission.
+                    // The registered ActivityResultCallback gets the result of this request.
+                    requestPermissionLauncher.launch(
+                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                }
+            }
         }
 
         return binding.root

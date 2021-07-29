@@ -82,11 +82,6 @@ fun bindPaymentItems(recyclerView: RecyclerView, data: ArrayList<Course>?) {
     adapter.submitList(data)
 }
 
-@BindingAdapter("imgLoad")
-fun loadImgToView(imgView: ImageView, imgSrc: Int) {
-    Glide.with(imgView.context).load(imgSrc).into(imgView)
-}
-
 @BindingAdapter("loadImgProfile")
 fun loadImgWithGlide(imgView: ImageView, imgSrc: User?){
     if (imgSrc != null){

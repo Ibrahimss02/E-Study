@@ -43,7 +43,7 @@
                     android:id="@+id/course_image"
                     android:layout_width="105dp"
                     android:layout_height="105dp"
-                    app:imgLoad="@{course.courseImg}"
+                    app:loadImg="@{course.courseImg}"
                     android:scaleType="centerCrop"
                     android:contentDescription="@string/course_image"
                     android:src="@drawable/iu" />

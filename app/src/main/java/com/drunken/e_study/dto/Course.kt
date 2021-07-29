@@ -28,7 +28,7 @@ data class Course(
     val rating : Float? = 0F,
 
     @ColumnInfo(name = "course_image")
-    val courseImg : Int? = 0,
+    val courseImg : String? = null,
 
     @ColumnInfo(name = "course_videos")
     val videos : List<Map<String, String>>? = null,

@@ -51,7 +51,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 50000,
                 3.0F,
-                R.drawable.sample_course_img_sd,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_img_sd.png?alt=media&token=a7f52a39-30ba-4e45-a958-d49f63f6c4b3",
                 listOf(
                     mapOf("Pendahuluan" to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
                     mapOf("Konsep Pembelajaran Tematik - Keg. 1"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
@@ -83,7 +83,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 55000,
                 3.5F,
-                R.drawable.sample_course_img_sd
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_img_sd.png?alt=media&token=a7f52a39-30ba-4e45-a958-d49f63f6c4b3"
             ),
             Course(
                 "56a2f4bd-d6c1-42c0-b774-1462ab79e03b",
@@ -93,7 +93,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 60000,
                 2.7F,
-                R.drawable.sample_course_img_sd
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_img_sd.png?alt=media&token=a7f52a39-30ba-4e45-a958-d49f63f6c4b3"
             ),
             Course(
                 "52ba7f4a-4057-4ac5-8d7e-9ad3a7e796f0",
@@ -103,7 +103,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 55000,
                 4F,
-                R.drawable.sample_course_img_sd
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_img_sd.png?alt=media&token=a7f52a39-30ba-4e45-a958-d49f63f6c4b3"
             ),
             Course(
                 "ab553ef3-f6b1-4a3b-b522-c976c2cb853b",
@@ -113,7 +113,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 39000,
                 3.5F,
-                R.drawable.sample_course_img_sd
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_img_sd.png?alt=media&token=a7f52a39-30ba-4e45-a958-d49f63f6c4b3"
             ),
             Course(
                 "ef5f2576-f8f5-4c4c-a9ad-b4990232edee",
@@ -123,7 +123,7 @@ class FirestoreUtil {
                 "Kelas 3 SD",
                 30000,
                 4F,
-                R.drawable.sample_bahasa_course
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_bahasa_course.jpg?alt=media&token=9b9dd1ec-9ac4-4989-a0fb-3bf44570fbdb"
             ),
             Course(
                 "de3241cc-30f0-48fd-9305-000fd9660c53",
@@ -133,7 +133,7 @@ class FirestoreUtil {
                 "Kelas 2 SD",
                 35000,
                 3F,
-                R.drawable.sample_bahasa_course,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_bahasa_course.jpg?alt=media&token=9b9dd1ec-9ac4-4989-a0fb-3bf44570fbdb",
                 listOf(
                     mapOf("Unit 1 - Tamasya"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
                     mapOf("Unit 2 - Kegemaran"  to "https://www.youtube.com/watch?v=0dsBFFzPylE"),
@@ -172,7 +172,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 7 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Intro ke aritmatika untuk siswa sekolah menengah pertama",
                 id =
@@ -208,7 +208,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 8 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Intro ke geometri untuk siswa sekolah menengah pertama",
                 id =
@@ -244,7 +244,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 7 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Pengenalan konsep-konsep dasar Matematika bagi siswa sekolah menengah pertama",
                 id =
@@ -262,7 +262,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 7 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Pengenalan aljabar dan garis singgung kepada siswa sekolah menengah pertama",
                 id =
@@ -280,7 +280,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 9 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Kumpulan materi untuk menghadapi UNBK mata ujian Matematika",
                 id =
@@ -298,7 +298,7 @@ class FirestoreUtil {
                 classCategory =
                 "Kelas 9 SMP",
                 courseImg =
-                R.drawable.sample_course_math,
+                "https://firebasestorage.googleapis.com/v0/b/e-study-2c48f.appspot.com/o/images%2FcourseImg%2Fsample_course_math.png?alt=media&token=a2656dd2-7777-4bb5-8db6-adf90b6ac8ca",
                 desc =
                 "Kumpulan materi untuk menghadapi UNBK mata ujian Matematik (II)",
                 id =
@@ -317,20 +317,13 @@ class FirestoreUtil {
         withContext(Dispatchers.IO){
             courseSd.forEach { course ->
                 dao.insert(course)
-                db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                    Log.i("upload", "${course.title} uploaded")
-                }
-                db.collection("SD_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                    Log.i("upload", "${course.title} uploaded to SD_courses") }
+                db.collection("courses").document(course.id).set(course, SetOptions.merge())
+                db.collection("SD_courses").document(course.id).set(course, SetOptions.merge())
             }
             courseSmp.forEach { course ->
                 dao.insert(course)
-                db.collection("courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                    Log.i("upload", "${course.title} uploaded")
-                }
-                db.collection("SMP_courses").document(course.id).set(course, SetOptions.merge()).addOnSuccessListener {
-                    Log.i("upload", "${course.title} uploaded to SMP_courses")
-                }
+                db.collection("courses").document(course.id).set(course, SetOptions.merge())
+                db.collection("SMP_courses").document(course.id).set(course, SetOptions.merge())
             }
         }
     }

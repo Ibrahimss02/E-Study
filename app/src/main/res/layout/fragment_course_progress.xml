@@ -27,7 +27,7 @@
                 android:layout_height="260dp"
                 android:contentDescription="@string/course_image_desc"
                 android:scaleType="centerCrop"
-                app:imgLoad="@{viewModel.course.courseImg}"
+                app:loadImg="@{viewModel.course.courseImg}"
                 tools:src="@drawable/java_course_img" />
 
             <ImageView

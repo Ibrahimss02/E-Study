@@ -86,14 +86,12 @@ class AccountViewModel(
     }
 
     fun updateUserData(uri : Uri){
-        Log.i("test", "kepanggil")
         val user = user.value
         val imageRef = cloudStorageRef.child("images/" + user!!.id + "/" + uri.lastPathSegment)
         val uploadTask = imageRef.putFile(uri)
 
         uploadTask.addOnSuccessListener {
             imageRef.downloadUrl.addOnSuccessListener { url->
-                Log.i("test", "sukses")
                 user.imageProfile = url.toString()
                 firestore.collection("users").document(user.id).set(user, SetOptions.merge()).addOnSuccessListener {
                     _notifyUserUpdated.value = true
@@ -112,7 +110,6 @@ class AccountViewModel(
     }
 
     fun refreshUserData() {
-        Log.i("test", "update ${user.value}")
         viewModelScope.launch {
             userDatabase.update(_user.value!!)
         }

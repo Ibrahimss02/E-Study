@@ -1,6 +1,8 @@
 package com.drunken.e_study.ui.welcomeScreens.userRegister
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +10,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.drunken.e_study.R
@@ -16,6 +20,7 @@ import com.drunken.e_study.database.Database
 import com.drunken.e_study.databinding.FragmentUserRegisterBinding
 import com.drunken.e_study.ui.mainScreens.MainActivity
 import com.drunken.e_study.ui.welcomeScreens.WelcomeActivity
+import com.google.android.material.snackbar.Snackbar
 
 class UserRegisterFragment : Fragment(), View.OnClickListener {
 
@@ -27,6 +32,17 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
         binding.ivUserRegister.setImageURI(uri)
         viewModel.imageUriString.value = uri.toString()
     }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getContent.launch("image/*")
+            } else {
+                Toast.makeText(context, "Permission to access storage denied", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +87,23 @@ class UserRegisterFragment : Fragment(), View.OnClickListener {
 
         viewModel.pickImage.observe(viewLifecycleOwner, {
             if (it == true){
-                getContent.launch("image/*")
+                when {
+                    ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+                    ) == PackageManager.PERMISSION_GRANTED -> {
+                        getContent.launch("image/*")
+                    }
+                    shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) -> {
+                        Snackbar.make(requireActivity().findViewById(android.R.id.content), "Permission needed to read storage", Snackbar.LENGTH_SHORT).show()
+                    }
+                    else -> {
+                        // You can directly ask for the permission.
+                        // The registered ActivityResultCallback gets the result of this request.
+                        requestPermissionLauncher.launch(
+                            Manifest.permission.READ_EXTERNAL_STORAGE)
+                    }
+                }
             }
         })
 

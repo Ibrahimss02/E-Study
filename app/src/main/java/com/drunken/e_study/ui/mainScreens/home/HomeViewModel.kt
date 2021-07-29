@@ -7,6 +7,10 @@ import com.drunken.e_study.dao.CourseDatabaseDao
 import com.drunken.e_study.dao.UserDatabaseDao
 import com.drunken.e_study.dto.Course
 import com.drunken.e_study.dto.User
+import com.drunken.e_study.ui.mainScreens.home.HomeViewModel.Companion.KULIAH_PATH
+import com.drunken.e_study.ui.mainScreens.home.HomeViewModel.Companion.SD_PATH
+import com.drunken.e_study.ui.mainScreens.home.HomeViewModel.Companion.SMA_PATH
+import com.drunken.e_study.ui.mainScreens.home.HomeViewModel.Companion.SMP_PATH
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -31,12 +35,11 @@ class HomeViewModel(private val database : UserDatabaseDao, private val courseDa
             _user.postValue(database.lastCurrentUser())
             fetchCourseToDb()
         }
-
     }
 
     /**
      * This function is used to fetch all course from cloud to local Room database
-     * every time this fragment/ui gets initialized.
+     * every time this view model's fragment/ui gets initialized.
      */
     private suspend fun fetchCourseToDb() {
         firestore.collection("courses").addSnapshotListener { value, error ->
@@ -51,7 +54,6 @@ class HomeViewModel(private val database : UserDatabaseDao, private val courseDa
                         course?.let { newCourse ->
                             courseDatabase.insert(newCourse)
                         }
-
                     }
                 }
             }
